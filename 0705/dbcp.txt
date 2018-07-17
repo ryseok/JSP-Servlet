@@ -1,0 +1,18 @@
+<Context path="/TomTest" reloadable="true" 
+        docBase="C:\rys\workspace\TomTest" 
+        workDir="C:\rys\workspace\TomTest\work">
+        
+   <Resource
+         name="oracle/jdbc"
+         type="javax.sql.DataSource"
+         auth="Container" 
+         driverClassName="oracle.jdbc.driver.OracleDriver"
+         url="jdbc:oracle:thin:@localhost:1521:xe"
+         username="scott"
+         password="tiger"
+         maxTotal="15"
+         maxIdle="10"
+         maxWaitMillis="-1"
+         />          
+        
+</Context>
