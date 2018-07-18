@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="emp">
+	<!--30번 부서 삭제-->
+	<delete id="delete">
+		delete from empcopy where deptno=30
+	</delete>
+	
+	<!--문제2) 7788사번을 갖는 사원의 이름을 조회(emp테이블) -->
+	<!--<select>태그 사용시 resultClass="com.encore.j0716.Emp" : 꼭 작성!!!-->
+	<select id="select" resultClass="String">
+		select ename from emp where empno=7788 
+	</select>
+	
+	<!--문제3) 특정 사번을 전달하여 사원명 조회(emp테이블)-->
+	<!--java.lang.Integer 정석-->
+	<select id="select2" resultClass="String" parameterClass="java.lang.Integer">
+		select ename from emp where empno=#empno# 
+	</select>
+	
+	<!--문제4) 30번 부서에 근무하는 사원명 조회(emp테이블)-->
+	<select id="select3" resultClass="String">
+		select ename from emp where deptno=30 
+	</select>
+	
+	<!--문제5) 특정부서에 근무하는 사원의 사원번호, 사원명, 급여, 부서번호를 출력.(emp테이블)-->
+	<select id="selectEmpInfo" resultClass="com.encore.j0716.Emp" parameterClass="int">
+		select empno,ename,sal,deptno from emp where deptno=#deptno# 
+	</select>
+	
+	<!--문제6) vo 없이 resultClass,parameterClass를 표현-->
+	<select id="selectEmpInfo2" resultClass="java.util.HashMap" parameterClass="java.util.Map">
+		select ename,sal from emp where deptno=#deptno# AND sal>=#sal#
+	</select>
+</sqlMap>
