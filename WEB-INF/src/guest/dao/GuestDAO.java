@@ -9,43 +9,76 @@ import guest.vo.Guest;
 import iba.MySqlMapClient;
 
 public class GuestDAO {
-	
-	SqlMapClient smc;//XML³»ÀÇ sql¹® È£ÃâÇÏ´Â °´Ã¼°¡ ÇÊ¿ä!!
-	
+
+	SqlMapClient smc;
+
 	public GuestDAO() {
-	   smc = MySqlMapClient.getSqlMapInstance();
+		smc = MySqlMapClient.getSqlMapInstance();
 	}
-	
-	//no, writer, email, tel, pass, contents, wdate	
+
+	// no, writer, email, tel, pass, contents, wdate
 	public boolean insert(Guest guest) {
 		try {
-			Object ob = smc.insert("guest.insert",guest);
-			//ob ---> null (ob»ç¿ë ¿ëµµ ¾øÀ½)
-		    return true;	
+			Object ob = smc.insert("guest.insert", guest);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
-	}//insert
-	
+	}// insert
+
 	public List<Guest> selectAll() {
-		List<Guest> list=null;
-		 try {
+		List<Guest> list = null;
+		try {
 			list = smc.queryForList("guest.selectAll");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return list;
-	}//selectAll
+	}// selectAll
+
+	public Guest select(int no) {
+		Guest guest = null;
+		try {
+			guest = (Guest) smc.queryForObject("guest.select", no);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return guest;
+	}// select
+
+	public boolean update(Guest guest) {
+		try {
+			int t = smc.update("guest.update", guest);
+			// t: ìˆ˜ì •ëœ í–‰ì˜ ê°¯ìˆ˜
+			System.out.println("ìˆ˜ì •ëœ í–‰ ê°¯ìˆ˜T: " + t);
+			if (t == 1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}// update
+
+	public boolean delete(int no) {
+		   try {
+			int t=smc.delete("guest.delete",no);
+			   if(t==1) {
+				   return true;
+			   }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		   return false;
+	}
+//	public boolean ë˜ëŠ” String delete(í”„ë¼ì´ë¨¸ë¦¬í‚¤) {}
+
 	
-//	public boolean ¶Ç´Â String update(ºóÁî) {}
-//	public boolean ¶Ç´Â String delete(ÇÁ¶óÀÌ¸Ó¸®Å°) {}
-//	public ºóÁî select(ÇÁ¶óÀÌ¸Ó¸®Å°) {}
 	
-	
-   /*public boolean ¶Ç´Â String insert(ºóÁî) {}
-   public boolean ¶Ç´Â String update(ºóÁî) {}
-   public boolean ¶Ç´Â String delete(ÇÁ¶óÀÌ¸Ó¸®Å°) {}
-   public ºóÁî select(ÇÁ¶óÀÌ¸Ó¸®Å°) {}//¼öÁ¤Æû
-   public ArrayList<ºóÁî> selectAll() {}*/
+   /*public boolean ë˜ëŠ” String insert(ë¹ˆì¦ˆ) {}
+   public boolean ë˜ëŠ” String update(ë¹ˆì¦ˆ) {}
+   public boolean ë˜ëŠ” String delete(í”„ë¼ì´ë¨¸ë¦¬í‚¤) {}
+   public ë¹ˆì¦ˆ select(í”„ë¼ì´ë¨¸ë¦¬í‚¤) {}//ìˆ˜ì •í¼
+   public ArrayList<ë¹ˆì¦ˆ> selectAll() {}*/
 }

@@ -11,58 +11,85 @@ import javax.servlet.http.HttpServletResponse;
 import guest.dao.GuestDAO;
 import guest.vo.Guest;
 
-@WebServlet(urlPatterns="/guest/control")//¾Æ·¡ ¼­ºí¸´¿¡ ´ëÇÑ °¡»óÀÇ °æ·Î!!
-public class GuestController extends HttpServlet{
+@WebServlet(urlPatterns = "/guest/control") // ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½!!
+public class GuestController extends HttpServlet {
 
 	@Override
-	protected void service(HttpServletRequest request, 
-			               HttpServletResponse response) throws ServletException, IOException {
-       request.setCharacterEncoding("UTF-8");//ÇÑ±Û ÆÄ¶ó¹ÌÅÍ Ã³¸®
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+
+		// System.out.println("service call...");
+
+		String action = request.getParameter("action");
+		System.out.println("action==>" + action);
+		GuestDAO dao = new GuestDAO();
 		
-		//System.out.println("service call...");
-       //1.¿äÃ» ºĞ¼®
-       String action = request.getParameter("action");
-       System.out.println("action==>"+ action);
-       GuestDAO dao = new GuestDAO();
-       
-       if(action == null || action.equals("list")) {
-    	   //ÀüÃ¼ °Ô½Ã¹° Á¤º¸ Á¶È¸
-    	   request.setAttribute("list", dao.selectAll());
-    	   
-    	   request.getRequestDispatcher("/guest/list.jsp")
-    	   .forward(request, response);
-    	   
-       }else if(action.equals("form")) {//1. ÀÔ·ÂÆû ¿äÃ»
-    	  request.getRequestDispatcher("/guest/inputForm.jsp")
-    	         .forward(request, response);
-    	  //4.ÆäÀÌÁö ÀÌµ¿ 
-       }else if(action.equals("insert")) {//1. DBÀÔ·Â¿äÃ»
-    	   //2. ÀÔ·ÂÆû³»ÀÇ µ¥ÀÌÅÍ ¾ò¾î¿À±â
-    	   String writer = request.getParameter("writer");
-    	   String email = request.getParameter("email");
-    	   String tel = request.getParameter("tel");
-    	   String pass = request.getParameter("pass");
-    	   String contents = request.getParameter("contents");
-    	       	   
-    	   Guest guest = new Guest();
-         //new Guest(0, writer, email, tel, pass, contents, null);
-    	         guest.setWriter(writer);
-    	         guest.setEmail(email);
-    	         guest.setTel(tel);
-    	         guest.setPass(pass);
-    	         guest.setContents(contents);
-    	   
-    	   //3. DAO°´Ã¼»ı¼º, È£Ãâ
-    	     if(dao.insert(guest)) {
-    	    	 //4. ÆäÀÌÁö ÀÌµ¿  (ÇàÃß°¡¸¦ ¹İ¿µÇÑ list.jspº¸ÀÌ±â)
-    	    	 response.sendRedirect("control?action=list");  
-    	     }
-       }
-       
-	}//service
+		
+		if (action == null || action.equals("list")) {
+			
+			request.setAttribute("list", dao.selectAll());
+
+			request.getRequestDispatcher("/guest/list.jsp").forward(request, response);
+
+		} else if (action.equals("form")) {
+			request.getRequestDispatcher("/guest/inputForm.jsp").forward(request, response);
+			
+		} else if (action.equals("insert")) {
+			
+			String writer = request.getParameter("writer");
+			String email = request.getParameter("email");
+			String tel = request.getParameter("tel");
+			String pass = request.getParameter("pass");
+			String contents = request.getParameter("contents");
+
+			// new Guest(0, writer, email, tel, pass, contents, null);
+			Guest guest = new Guest();
+			guest.setWriter(writer);
+			guest.setEmail(email);
+			guest.setTel(tel);
+			guest.setPass(pass);
+			guest.setContents(contents);
+
+			
+			if (dao.insert(guest)) {
+				response.sendRedirect("control?action=list");
+			}
+		}else if(action.equals("edit")) { //list ===> editForm.jspë¡œ ì´ë™!!!
+			 //ìˆ˜ì •í¼ì— ì¶œë ¥í•  ë°ì´í„°ë¥¼ (DBë¡œ ë¶€í„°)ì¡°íšŒ
+	    	   int no= Integer.parseInt(request.getParameter("no"));
+	    	   
+	    	   Guest guest = dao.select(no);//3.
+	    	          guest.setNo(no);
+	    	   //System.out.println("ìˆ˜ì •í• "+guest);
+	    	   request.setAttribute("guest", guest);
+	    	   
+	    	   request.getRequestDispatcher("/guest/editForm.jsp")
+	    	          .forward(request, response);//4.
+
+		}else if(action.equals("update")) {//1. DBìˆ˜ì •ìš”ì²­
+	    	   
+	    	  Guest guest = new Guest();
+	    	     guest.setWriter(request.getParameter("writer"));
+	    	     guest.setEmail(request.getParameter("email"));
+	    	     guest.setTel(request.getParameter("tel"));
+	    	     guest.setPass(request.getParameter("pass"));
+	    	     guest.setContents(request.getParameter("contents"));
+	    	     
+	    	     guest.setNo(Integer.parseInt(request.getParameter("no")));
+	    	     
+	          System.out.println("ìˆ˜ì •"+guest);  
+	          
+	    	  if(dao.update(guest)) {
+	    		  response.sendRedirect("/TomTest/guest/control?action=list");
+	    	  }
+	       }else if(action.equals("delete")) {//1. DBì‚­ì œ ìš”ì²­
+	    	   int no = Integer.parseInt(request.getParameter("no"));
+	    	   if(dao.delete(no)) {
+	    		   response.sendRedirect("/TomTest/guest/control?action=list");
+	    	   }
+	       }
+
+
+	}// service
 }
-
-
-
-
-

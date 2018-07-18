@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
 <sqlMap namespace="guest">
-  <insert id="insert" parameterClass="guest.vo.Guest">
-    insert into guest (no,writer,email,tel,pass,contents,wdate)
-		values (guest_seq.nextval, #writer#,#email#,#tel#,
-		        #pass#,#contents#, sysdate)
-  </insert>
-  
-  <select id="selectAll" resultClass="guest.vo.Guest">
-     select no,writer,tel,contents,wdate
-     from guest
-     order by no desc
-  </select>
+	<insert id="insert" parameterClass="guest.vo.Guest">
+		insert into guest (no,writer,email,tel,pass,contents,wdate)
+		values (guest_seq.nextval, #writer#,#email#,#tel#,#pass#,#contents#, sysdate)
+	</insert>
+
+	<select id="selectAll" resultClass="guest.vo.Guest">
+		select
+		no,writer,tel,contents,wdate from guest order by no desc
+	</select>
+
+	<select parameterClass="int" id="select"
+		resultClass="guest.vo.Guest">
+		select writer,email,tel,pass,contents from guest
+		where no=#no#
+	</select>
+
+	<update parameterClass="guest.vo.Guest" id="update"> 
+	update guest set writer=#writer#, email=#email#, tel=#tel#, pass=#pass#, contents=#contents#
+	where no=#no#
+	</update>
+	
+	<delete parameterClass="int" id="delete"> delete from guest where no=#value# </delete>	
 </sqlMap>
 
 
