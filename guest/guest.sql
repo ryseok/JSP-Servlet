@@ -20,7 +20,7 @@ create sequence guest_seq
    nocache
    nocycle;
    
-   
+select * from GUEST;   
    
 
 
