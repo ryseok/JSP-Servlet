@@ -8,25 +8,34 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 public class MySqlMapClient {
-	/*
-	 	sqlMapConfig.xmlë¬¸ì„œë¥¼ ê°ì²´í™” ì‹œì¼œì£¼ëŠ” í´ë˜ìŠ¤
-	 	â˜…SqlMapClientí´ë˜ìŠ¤ : XMLë‚´ì— ì‘ì„±ëœ sqlë¬¸ì„ í˜¸ì¶œ!!
-	 */
+  /*
+    sqlMapConfig.xml¹®¼­¸¦ °´Ã¼È­ ½ÃÄÑÁÖ´Â Å¬·¡½º 
+      
+        ¡ÚSqlMapClientÅ¬·¡½º : XML³»¿¡ ÀÛ¼ºµÈ sql¹®À» È£Ãâ!!
+  */
 
-	private static final SqlMapClient sqlMap;
-
-	static {
-		try {
-			String resource = "./iba/sqlMapConfig.xml";
-			Reader reader = Resources.getResourceAsReader(resource);
-			sqlMap = SqlMapClientBuilder.buildSqlMapClient(reader);
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new RuntimeException("MySqlMapConfigì´ˆê¸°í™” ì¤‘ ì—ëŸ¬: " + e);
-		}
-	}// static
-
-	public static SqlMapClient getSqlMapInstance() {
-		return sqlMap;
-	}
+   private static final SqlMapClient sqlMap;	
+   
+   static {
+	   try {
+		String resource = "./iba/sqlMapConfig.xml";
+		   Reader reader = Resources.getResourceAsReader(resource);
+		   sqlMap = SqlMapClientBuilder.buildSqlMapClient(reader);
+	} catch (IOException e) {
+		e.printStackTrace();
+		throw new RuntimeException("MySqlMapConfigÃÊ±âÈ­ Áß ¿¡·¯: "+ e);
+	}	   
+   }//static
+	
+   public static SqlMapClient getSqlMapInstance() {
+	  return sqlMap; 
+   }
 }
+
+
+
+
+
+
+
+

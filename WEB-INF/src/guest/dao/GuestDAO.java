@@ -20,7 +20,7 @@ public class GuestDAO {
 	public boolean insert(Guest guest) {
 		try {
 			Object ob = smc.insert("guest.insert",guest);
-			//ob ---> null
+			//ob ---> null (ob사용 용도 없음)
 		    return true;	
 		} catch (SQLException e) {
 			e.printStackTrace();
