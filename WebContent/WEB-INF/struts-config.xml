@@ -1,64 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one or more
-    contributor license agreements.  See the NOTICE file distributed with
-    this work for additional information regarding copyright ownership.
-    The ASF licenses this file to You under the Apache License, Version 2.0
-    (the "License"); you may not use this file except in compliance with
-    the License.  You may obtain a copy of the License at
-   
-         http://www.apache.org/licenses/LICENSE-2.0
-   
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
--->
-
 <!DOCTYPE struts-config PUBLIC
           "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
           "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 
-<!--
-     This is a blank Struts configuration file with an example
-     welcome action/page and other commented sample elements.
-
-     Struts Validator is configured using the factory defaults
-     and is ready-to-use.
-
-     NOTE: If you have a generator tool to create the corresponding Java classes
-     for you, you could include the details in the "form-bean" declarations.
-     Otherwise, you would only define the "form-bean" element itself, with the
-     corresponding "name" and "type" attributes, as shown here.
--->
-
-
 <struts-config>
-
-
 <!-- ================================================ Form Bean Definitions -->
-
-    <form-beans>
-    <!-- sample form bean descriptor for an ActionForm
-        <form-bean
-            name="inputForm"
-            type="app.InputForm"/>
-    end sample -->
-
-    <!-- sample form bean descriptor for a DynaActionForm
-        <form-bean
-            name="logonForm"
-            type="org.apache.struts.action.DynaActionForm">
-            <form-property
-                name="username"
-                type="java.lang.String"/>
-            <form-property
-                name="password"
-                type="java.lang.String"/>
-       </form-bean>
-    end sample -->
-    </form-beans>
+<!--
+ 
+         <form-beans>
+            <form-bean type="액션폼클래스등록"
+                       name="폼클래스에 대한 식별 이름정의. 예)joinForm"/>
+         </form-beans>
+         
+         <action-mappings>
+            <action type="액션클래스등록"
+                    path="가상경로(.do매핑)"
+                    name="joinForm"/>
+         </action-mappings>
+         
+     
+-->
+	<form-beans>
+		<!--사용자가 정의한 ActionForm 클래스 등록 -->
+		<!--TestActionForm 등록 -->
+		<form-bean name="testForm" type="com.encore.s0723.forms.TestActionForm"/>
+		<form-bean name="loginForm" type="com.encore.s0723.forms.LoginActionForm"/>
+	</form-beans>
+	
 
 
 <!-- ========================================= Global Exception Definitions -->
@@ -102,6 +70,8 @@
             <action path="/playdata" forward="/0720/hello.jsp"></action>
             <action path="/login" forward="/0720/login_form.jsp"></action>
             
+            
+            
             <!--Action 클래스를 거친 JSP 페이지 이동-->
             <action path="/0722/action" type="com.encore.s0720.actions.MyAction">
             	<!--액션 실행후 이동할 페이지 나열 : <forward> 태그 통해-->
@@ -116,85 +86,49 @@
             	<forward name="fail" path="/0720/fail.jsp"></forward>
             </action>
             
-			<!--
-			<action
-            path="/Welcome"
-            forward="/pages/Welcome.jsp"/> -->
-
-    <!-- sample input and input submit actions
-
-        <action
-            path="/Input"
-            type="org.apache.struts.actions.ForwardAction"
-            parameter="/pages/Input.jsp"/>
-
-        <action
-            path="/InputSubmit"
-            type="app.InputAction"
-            name="inputForm"
-            scope="request"
-            validate="true"
-            input="/pages/Input.jsp"/>
-
-            <action
-                path="/edit*"
-                type="app.Edit{1}Action"
-                name="inputForm"
-                scope="request"
-                validate="true"
-                input="/pages/Edit{1}.jsp"/>
-
-    end samples -->
+            
+            <!--로그인 폼 보이기-->
+            <action path="/0723/form" forward="/0723/login_form.jsp"></action>
+            
+            
+            <!--로그인 처리-->
+            <action path="/0723/login" type="com.encore.s0723.actions.LoginAction">
+            	<forward name="success" path="/0723/success.jsp" redirect="true"/>
+            	<forward name="fail" path="/0723/fail.jsp"></forward>
+            </action>
+            
+            <!--테스트 액션 등록-->
+            <!--<form-beans>태그에서 등록한 것이 먼저 실행 : name="testForm"-->
+            <!--<action>의 속성 input : 만약 ActionForm거쳐서 에러가 발생 한다면 이동할 경로를 정의-->
+            <action path="/rys" type="com.encore.s0723.actions.TestAction" name="testForm" input="/0723/fail.jsp">
+            </action>
+            
+            <!--유효성 검사하는 로그인 처리-->
+            <action path="/0723/form2" forward="/0723/login_form2.jsp"></action>
+            <action path="/0723/login2" 
+            		type="com.encore.s0723.actions.LoginAction2" 
+            		name="loginForm" 
+            		input="/0723/login_form2.jsp"
+            		validate="true"
+            		scope="request">
+            	<forward name="loginForm2" path="/0723/form2.do" redirect="true"></forward>
+            </action>
+	
     </action-mappings>
 
 
 <!-- ======================================== Message Resources Definitions -->
 
-    <message-resources parameter="MessageResources" />
-
+    <!-- <message-resources parameter="MessageResources" /> -->
+	<message-resources parameter="resources.application"></message-resources>
 
 <!-- =============================================== Plug Ins Configuration -->
 
-  <!-- ======================================================= Tiles plugin -->
-  <!--
-     This plugin initialize Tiles definition factory. This later can takes some
-	 parameters explained here after. The plugin first read parameters from
-	 web.xml, thenoverload them with parameters defined here. All parameters
-	 are optional.
-     The plugin should be declared in each struts-config file.
-       - definitions-config: (optional)
-            Specify configuration file names. There can be several comma
-		    separated file names (default: ?? )
-       - moduleAware: (optional - struts1.1)
-            Specify if the Tiles definition factory is module aware. If true
-            (default), there will be one factory for each Struts module.
-			If false, there will be one common factory for all module. In this
-            later case, it is still needed to declare one plugin per module.
-            The factory will be initialized with parameters found in the first
-            initialized plugin (generally the one associated with the default
-            module).
-			  true : One factory per module. (default)
-			  false : one single shared factory for all modules
-	   - definitions-parser-validate: (optional)
-	        Specify if xml parser should validate the Tiles configuration file.
-			  true : validate. DTD should be specified in file header (default)
-			  false : no validation
-
-	  Paths found in Tiles definitions are relative to the main context.
-
-      To use this plugin, download and add the Tiles jar to your WEB-INF/lib
-      directory then uncomment the plugin definition below.
-
-    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
-
-      <set-property property="definitions-config"
-                       value="/WEB-INF/tiles-defs.xml" />
-      <set-property property="moduleAware" value="true" />
-    </plug-in>
-  -->  
+<!-- ======================================================= Tiles plugin -->
+ 
 
 
-  <!-- =================================================== Validator plugin -->
+<!-- =================================================== Validator plugin -->
 
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
     <set-property
