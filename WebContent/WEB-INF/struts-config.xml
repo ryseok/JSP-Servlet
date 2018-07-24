@@ -25,9 +25,10 @@
 		<!--TestActionForm 등록 -->
 		<form-bean name="testForm" type="com.encore.s0723.forms.TestActionForm"/>
 		<form-bean name="loginForm" type="com.encore.s0723.forms.LoginActionForm"/>
+		<form-bean name="calcForm" type="com.encore.s0724.forms.CalcActionForm"/>
+		<form-bean name="guestForm" type="com.encore.guest.form.GuestUpdateFormAction"/>
 	</form-beans>
 	
-
 
 <!-- ========================================= Global Exception Definitions -->
 
@@ -90,7 +91,6 @@
             <!--로그인 폼 보이기-->
             <action path="/0723/form" forward="/0723/login_form.jsp"></action>
             
-            
             <!--로그인 처리-->
             <action path="/0723/login" type="com.encore.s0723.actions.LoginAction">
             	<forward name="success" path="/0723/success.jsp" redirect="true"/>
@@ -114,8 +114,37 @@
             	<forward name="loginForm2" path="/0723/form2.do" redirect="true"></forward>
             </action>
 	
+	
+		<!--계산기 폼만 보이기-->
+		<action path="/0724/calcForm" forward="/0724/calc.jsp"/>
+		
+		<!--계산기 유효성 검사-->
+		<action path="/0724/calc"
+				type="com.encore.s0724.actions.CalcAction"
+				name="calcForm"
+				input="/0724/calc.jsp">
+			<forward name="form" path="/0724/calc.jsp"/>
+		</action>
+		
+		<!--inputForm 폼만 보이기-->
+		<action path="/0724/guest" forward="/guest/inputForm.jsp"/>
+		
+		<!--게스트 유효성 검사-->
+		<!-- name="guestForm"
+				input="/guest/inputForm.jsp" -->
+		<action path="/guest"
+				type="com.encore.guest.actions.GuestAction"
+				>
+				
+			<forward name="form" path="/guest/inputForm.jsp"></forward>
+			<forward name="list" path="/guest/list.jsp"></forward>
+			<forward name="insert" path="/guest.do?action=list"></forward>
+			<forward name="update" path="/guest.do?action=form"></forward>
+		
+		</action>
     </action-mappings>
-
+    
+	<controller processorClass="com.encore.control.MyRequestProcessor"></controller>
 
 <!-- ======================================== Message Resources Definitions -->
 
