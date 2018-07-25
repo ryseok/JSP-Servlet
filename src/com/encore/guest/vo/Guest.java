@@ -1,4 +1,4 @@
-package guest.vo;
+package com.encore.guest.vo;
 
 import java.util.Date;
 
