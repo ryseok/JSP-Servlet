@@ -9,7 +9,7 @@
 <body>
 	<h3>로그인폼</h3>
 	<hr>
-	<form action="/struts/0723/login.do" method="post">
+	<form action="review.do" method="post">
 		아이디 : 
 		<br>
 		<input type="text" name="userid">

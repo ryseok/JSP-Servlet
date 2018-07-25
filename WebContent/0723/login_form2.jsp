@@ -34,19 +34,23 @@
 		</html:messages>
 		<br>
 		
-		아이디 : <input type="text" name="userid">
+		아이디
+		<br>
+		<input type="text" name="userid">
 		
 		<!--만약 액션폼에서 "errid" 키값으로 add된 메세지가 존재 한다면 그 값을 msg변수에 저장-->
 		<!--<messages></messages> 시작 끝 태그 사이의 HTML코드를 출력 하시오.-->
 		<html:messages property="errid" id="msg">
 			<font color="red"><bean:write name="msg"/></font>
 		</html:messages>
+		<br><br>
+		비밀번호
 		<br>
-		비밀번호 : <input type="password" name="userpwd">
+		<input type="password" name="userpwd">
 		<html:messages property="errpass" id="msg">
 			<font color="red"><bean:write name="msg"/></font>
 		</html:messages>
-		<br>
+		<br><br>
 		<button>로그인</button>
 	</form>
 </body>
