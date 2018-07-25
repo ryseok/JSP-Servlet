@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function printName() {
+	var sp = document.getElementById("sp");
+	var name = document.frm.username.value;
+	sp.innerHTML = name;
+	document.frm.username.value="";
+	}
+</script>
+</head>
+<body>
+	<h3>입력폼</h3>
+	<hr>
+	<form action="a.jsp" name="frm">
+		이름 : <input type="text" name="username">
+		<br>
+		<input type="button" value="전송" onclick="printName()">
+	</form>
+	<br>
+	<span id="sp"></span>
+</body>
+</html>

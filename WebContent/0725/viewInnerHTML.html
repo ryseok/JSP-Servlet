@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function view() {
+		/*
+		<p>엘리먼트 객체를 얻어오기 : Element자료형은 innerHTML속성을 사용할 수 있음
+		변수 = p1.innerHTML	: getInnerHTML()의미
+		p1.innerHTML = 데이터 : setInnerHTML()의미
+		*/
+		var p1 = document.getElementById("p1");
+		var v = p1.innerHTML;
+		alert("v : " + v);
+		
+		p1.innerHTML = "<font size=6 color=red>동해물과</font>"
+	}
+</script>
+</head>
+<body>
+	<p id="p1">
+		<strong>내가 <br> innerHTML이다!!!</strong>
+	</p>
+
+	<input type="button" value="클릭" onclick="view()">
+</body>
+</html>

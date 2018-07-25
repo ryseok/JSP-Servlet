@@ -26,7 +26,8 @@
 		<form-bean name="testForm" type="com.encore.s0723.forms.TestActionForm"/>
 		<form-bean name="loginForm" type="com.encore.s0723.forms.LoginActionForm"/>
 		<form-bean name="calcForm" type="com.encore.s0724.forms.CalcActionForm"/>
-		<form-bean name="guestForm" type="com.encore.guest.form.GuestUpdateFormAction"/>
+		
+		
 	</form-beans>
 	
 
@@ -115,6 +116,9 @@
             </action>
 	
 	
+	
+	
+	
 		<!--계산기 폼만 보이기-->
 		<action path="/0724/calcForm" forward="/0724/calc.jsp"/>
 		
@@ -125,22 +129,62 @@
 				input="/0724/calc.jsp">
 			<forward name="form" path="/0724/calc.jsp"/>
 		</action>
+
+
+
+
+
+
+	<!--게스트 유효성 검사_0724 -->
+	<action path="/guest"
+		type="com.encore.guest.actions.GuestAction">
+		<forward name="form" path="/guest/inputForm.jsp" />
+		<forward name="list" path="/guest/list.jsp" />
+		<forward name="insert" path="/guest.do?action=list"
+			redirect="true" />
+	</action>
+
+
+	<!-- 방명록 관련 Action(수정폼) -->
+	<action path="/guest/upform"
+		type="com.encore.guest.actions.GuestUpdateFormAction">
+		<forward name="upform" path="/guest/editForm.jsp" />
+	</action>
+	<!-- 방명록 관련 Action(수정처리) -->
+	<action path="/guest/update"
+		type="com.encore.guest.actions.GuestUpdateAction">
+		<forward name="list" path="/guest.do?action=list"
+			redirect="true" />
+	</action>
+	<!-- 방명록 관련 Action(삭제처리) -->
+	<action path="/guest/delete"
+		type="com.encore.guest.actions.GuestDeleteAction">
+		<forward name="list" path="/guest.do?action=list"
+			redirect="true" />
+	</action>
+	<!-- 방명록 관련 뷰 (pass_check.jsp) -->
+	<action path="/guest/passCheck" forward="/guest/pass_check.jsp" />
 		
-		<!--inputForm 폼만 보이기-->
-		<action path="/0724/guest" forward="/guest/inputForm.jsp"/>
+	<!--타일즈 액션 정의 -->
+	<action path="/tiles/main"
+			forward=".main"/>	
+	<action path="/tiles/form"
+			forward=".form"/>	
+	<action path="/tiles/login"
+			forward=".login"/>	
 		
-		<!--게스트 유효성 검사-->
-		<!-- name="guestForm"
-				input="/guest/inputForm.jsp" -->
-		<action path="/guest"
-				type="com.encore.guest.actions.GuestAction"
-				>
-				
-			<forward name="form" path="/guest/inputForm.jsp"></forward>
-			<forward name="list" path="/guest/list.jsp"></forward>
-			<forward name="insert" path="/guest.do?action=list"></forward>
-			<forward name="update" path="/guest.do?action=form"></forward>
 		
+		
+		
+		
+		
+		<!--로그인 성공 또는 실패-->
+		<action path="/0724/review"
+				input="/review/login_form.jsp"
+				type="reivew.Action_review"
+				name="reviewForm">
+		<forward name="fail" path="/review/fail.jsp"></forward>		
+		<forward name="success" path="/review/success.jsp"></forward>		
 		</action>
     </action-mappings>
     
@@ -158,6 +202,14 @@
 
 
 <!-- =================================================== Validator plugin -->
+
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config" value="/WEB-INF/config/tiles-defs.xml"/>
+		<set-property property="definitions-debug" value="2"/>
+		<set-property property="definitions-parser-details" value="2"/>
+		<set-property property="definitions-parser-validate" value="true"/>
+	</plug-in>
+
 
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
     <set-property

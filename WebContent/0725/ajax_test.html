@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax</title>
+<script type="text/javascript">
+var xhr = null;
+function setXMLHttpRequest() { //XMLHttpRequest : 서버통신 객체
+	if(window.ActiveXObject){
+		//브라우저에서 ActiveXObject객체를 지원 한다면
+		//===>MS에서 IE라면
+		try{
+			xhr = new ActiveXObject("Msxml2.XMLHTTP"); //IE 5이상
+			
+		}catch(e){
+			xhr = new ActiveXObject("Microsoft.XMLHTTP"); //IE 낮은 버전
+		}
+	}else{ //IE가 아닌경우,IE 11이상
+		xhr = new XMLHttpRequest();
+	}
+}//setXMLHttpRequest_End
+
+
+function load() { //서버에 데이터 요청(URL 요청) ===객체필요===>XMLHttpRequest
+	setXMLHttpRequest();
+	xhr.onreadystatechange=viewMsg; //onreadystatechange속성 = 콜백 함수명;
+	xhr.open("GET","response.jsp",true); //페이지 요청
+	//===>1인자 : GET,POST방식 / 2인자 : 요청URL / 3인자 : 비동기 방식
+	
+	xhr.send(null); //파라미터 전달
+}//load_End
+
+
+function viewMsg() {//콜백함수(이벤트 발생 후 실행하는 함수)
+	//alert("xhr.readyState : " + xhr.readyState); //1(OPEN),2(SEND),3(데이터 일부),4(데이터 전부) 까지 출력
+	
+	if(xhr.readyState==4){//요청한 데이터를 전부 받았을때
+		if(xhr.status==200){//서버의 상태를 체크
+		//alert("서버의 상태 : " + xhr.status);
+		var data = xhr.responseText;
+		//===>중요!!! 서버가 전달한 데이터 얻어오기 : xhr.reponseText 또는 xhr.reponseXML
+		alert("from Server" + data);
+		var d1 = document.getElementById("d1");
+		d1.innerHTML = data;
+		}else{
+			alert("서버의 에러" + xhr.status);
+		}
+		
+	}
+}//viewMsg_End
+
+</script>
+</head>
+<body>
+	<h3>Ajax_Test</h3>
+	<hr>
+	<button onclick="load()">서버 데이터 요청(Ajax통한)</button>
+	<div id="d1"></div>
+</body>
+</html>

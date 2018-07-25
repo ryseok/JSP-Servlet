@@ -1,5 +1,8 @@
 package com.encore.guest.actions;
 
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,70 +13,58 @@ import org.apache.struts.action.ActionMapping;
 
 import com.encore.guest.dao.GuestDAO;
 
-import guest.vo.Guest;
+import com.encore.guest.vo.Guest;
 
-public class GuestAction extends Action {
-
+public class GuestAction extends Action{
+	
 	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-
-		// 요청URL : /struts/guest.do?action=데이터
-		String action = request.getParameter("action");
-		System.out.println("action : " + action);
-		GuestDAO dao = new GuestDAO();
-
-		ActionForward forward = null;
-		if (action == null || action.equals("list")) {// 목록요청
-			forward = mapping.findForward("list");
-			request.setAttribute("list", dao.selectAll());
-		} else if(action.equals("form") ){// if(action.equals("form"))//입력폼요청
-			forward = mapping.findForward("form");
-		}else if(action.equals("insert")) {
-			
-			// 2. 입력폼내의 데이터 얻어오기
-			String writer = request.getParameter("writer");
-			String email = request.getParameter("email");
-			String tel = request.getParameter("tel");
-			String pass = request.getParameter("pass");
-			String contents = request.getParameter("contents");
-
-			Guest guest = new Guest();
-			// new Guest(0, writer, email, tel, pass, contents, null);
-			guest.setWriter(writer);
-			guest.setEmail(email);
-			guest.setTel(tel);
-			guest.setPass(pass);
-			guest.setContents(contents);
-
-			// 3. DAO객체생성, 호출
-			if (dao.insert(guest)) {
-				// 4. 페이지 이동 (행추가를 반영한 list.jsp보이기)
-				//response.sendRedirect("control?action=list");
-				forward = mapping.findForward("insert");
-			}
-		}
-//		else if (action.equals("update")) {// 1. DB수정요청
-//
-//			Guest guest = new Guest();
-//			guest.setWriter(request.getParameter("writer"));
-//			guest.setEmail(request.getParameter("email"));
-//			guest.setTel(request.getParameter("tel"));
-//			guest.setPass(request.getParameter("pass"));
-//			guest.setContents(request.getParameter("contents"));
-//
-//			guest.setNo(Integer.parseInt(request.getParameter("no")));
-//
-//			System.out.println("수정" + guest);
-//
-//			if (dao.update(guest)) {
-//				forward = mapping.findForward("update");
-//			}
-//		}
-		// return mapping.findForward("form");
-		// return mapping.findForward(action);
-
-		return forward;
-	}// execute
+	public ActionForward execute(ActionMapping mapping, 
+			                    ActionForm form, 
+			                    HttpServletRequest request,
+			                    HttpServletResponse response) throws Exception {
+        
+		//  요청URL : /struts/guest.do?action=데이터
+		
+	 String action = request.getParameter("action");
+	    //"list" "form" "insert"
+	 System.out.println("action="+action);
+	 
+	     GuestDAO dao = new GuestDAO();
+	 
+	  ActionForward forward=null;
+	    if(action==null || action.equals("list")) {//목록요청
+	    	 List<Guest> list = dao.selectAll();
+	    	 request.setAttribute("list", list);
+	    	 
+	    	forward = mapping.findForward("list");
+	    }else if(action.equals("form")) {//입력폼요청
+	    	forward = mapping.findForward("form");
+	    }else if(action.equals("insert")) {//DB입력요청
+	    		    	
+	    	//5개의 파라미터 데이터를 한개의 변수명으로 묶어주기
+	    	Guest guest = new Guest(0, 
+					    			request.getParameter("writer"), 
+					    			request.getParameter("email"), 
+					    			request.getParameter("tel"), 
+					    			request.getParameter("pass"), 
+					    			request.getParameter("contents"), 
+	    			                null);
+	    	
+	    	
+	    	boolean flag = dao.insert(guest);
+	    	/*PrintWriter out = response.getWriter();
+	    	if(flag) {//입력 성공
+	    		out.print("입력성공!!<br><a href='guest.do?action=list'>리스트이동</a>");
+	    	}else {//입력 실패
+	    		out.print("입력실패!!<br><a href='guest.do?action=form'>입력폼이동</a>");
+	    	}*/
+	    	if(flag) {
+	    		forward = mapping.findForward("insert");
+	    	}
+	    	
+	    }
+		
+	   return forward; 
+	}//execute
 
 }

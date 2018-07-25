@@ -6,8 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts.action.RequestProcessor;
+import org.apache.struts.tiles.TilesRequestProcessor;
 
-public class MyRequestProcessor  extends RequestProcessor{
+public class MyRequestProcessor  extends TilesRequestProcessor{ //RequestProcessor{
 	@Override
 	protected boolean processPreprocess(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("MyRequestProcessor");
