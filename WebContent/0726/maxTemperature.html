@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>maxTemperature.html</title>
+<script type="text/javascript" src="../js/ajax.js"></script>
+<script type="text/javascript">
+	function loadTemp() { //온도 정보 요청 하기
+		sendRequest("getMaxTemperature.jsp", null, loadedTemp, "GET");
+	}
+
+	function loadedTemp() { //온도 정보 데이터 얻기
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var str = xhr.responseText; //str=33.9, 39.4, 40.7, 28.0 들어가 있음
+			var arr = str.split(",");
+			var arr2 = new Array(arr.length);
+			for(var i=0; i<arr.length; i++){
+				arr2[i] = parseFloat(arr[i]);
+				//alert(arr2[i]);
+			}
+			var max=arr2[0];
+			for(var i=1; i<arr2.length; i++){
+				if(max < arr2[i]){
+					max = arr2[i];
+				}
+			}
+			var sp = document.getElementById("sp");
+			sp.innerHTML = max;
+		}
+	}
+
+	window.onload = function() {
+		loadTemp();
+	}
+</script>
+</head>
+<!--maxTemperature.html-->
+<body>
+	최고 온도는<span id="sp"></span>!!
+</body>
+</html>

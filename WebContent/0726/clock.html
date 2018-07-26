@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>시계 Test</title>
+<script type="text/javascript">
+	function printTime() {
+		var now = new Date(); //new Date()가 실행 되는 순간 시스템의 날짜정보를 now에 저장
+		var h = now.getHours();
+		var m = now.getMinutes();
+		var s= now.getSeconds();
+		var msg = h+"시"+m+"분"+s+"초";
+		
+		//span엘리먼트 객체 얻어오기
+		var sp = document.getElementById("sp");
+		sp.innerHTML = msg;
+		setTimeout("printTime()", 1000);
+	}
+	
+	//window.onload 브라우저에 전체 HTML문서가 적재(출력)되었을때
+	window.onload = function() {
+						//이벤트발생시 실행할 일.
+						printTime();
+					};
+</script>
+</head>
+
+<body> <!--<body onload="printTime()">내의 내용들이 브라우저에 로딩(출력)되었다면-->
+	현재시간은 <font color="red"><span id="sp">2시58분</span></font> 입니다. <!--<span></span> 라인 변경 없이 사용-->
+</body>
+
+</html>

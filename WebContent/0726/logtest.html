@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>화면 기록</title>
+<script type="text/javascript">
+	function log(msg) {
+		var console = document.getElementById("debugConsole");
+		if(console != null){
+			console.innerHTML += msg+"<br>";
+		}
+	}
+	
+	function loadlist() {
+		log("loadlist 시작");
+		log("loadlist 끝");
+	}
+	
+	window.onload=function(){
+		log("window.onload 호출");
+		loadlist();
+	}
+</script>
+</head>
+<!--logtest.html-->
+<body>
+	<h3>화면기록 테스트</h3>
+	<hr>
+	<div id="debugConsole" style="border: 1px solid #0f0;"></div>
+</body>
+</html>

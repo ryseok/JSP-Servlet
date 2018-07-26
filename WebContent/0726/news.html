@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>News</title>
+<script type="text/javascript" src="../js/ajax.js"></script>
+<script type="text/javascript">
+	function loadNews() { //뉴스정보 요청
+		sendRequest("getNewsTitles.jsp", null, loadedNews, "GET");
+	}
+
+	function loadedNews() { //뉴스정보 데이터 얻기
+		if(xhr.readyState==4 && xhr.status==200){
+			var str = xhr.responseText;
+			var d1 = document.getElementById("d1");
+			d1.innerHTML=str;
+		}
+	}
+	window.onload=function(){ loadNews();}
+</script>
+</head>
+<body>
+	<h3>최신뉴스</h3>
+	<hr>
+	<div id="d1"></div>
+</body>
+</html>

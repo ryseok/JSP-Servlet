@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>0726</title>
+<script type="text/javascript">
+	var xhr = null;
+	
+	function mainpulationDoc() {
+		var v = "<font color=blue>hello javascript</font>"; //데이터 타입은 String
+		var d1 = document.getElementById("d1"); //Element 객체는 innerHTML속성을 갖는다!!!
+		d1.innerHTML = v;
+	}
+
+	function mainpulationDoc2() {
+		var name = document.frm.username.value;
+		var d2 = document.getElementById("d2");
+		d2.innerHTML = "<font color = green>안녕," + name + "!</font>"
+	}
+	
+	function mainpulationDoc3() {
+		//조작에 필요한 데이터가 서버에 있을때 그 서버에게 데이터를 요청
+		//===>서버통신이 필요함!!!, 객체 : XMLHttpRequest
+		
+		//객체생성
+		xhr = new XMLHttpRequest();
+		
+		//readystate값이 변경되는 것을 이벤트로 해서 fromServer()메소드 호출
+		xhr.onreadystatechange=fromServer;
+		
+		//한글 데이터를 전달하는 경우 깨짐이 발생할 수 있고 UTF-8형식으로 변환해서 보내는 것이 좋다.
+		//encodeURIComponent(한글데이터);
+		var name = document.frm.username.value;
+		name = encodeURIComponent(name);
+		
+		//데이터를 출력하는 URL을 요청
+		//xhr.open("GET", "hello.jsp?a=10&name="+ encodeURIComponent(name) ); //★중요
+		xhr.open("POST", "hello.jsp?a=10"); //★중요
+		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+		
+		//URL 요청시 전달한 데이터(POST인 경우)
+		//xhr.send(null);
+		xhr.send("name=" + name);
+		
+		fromServer();
+	}
+	
+	function fromServer() {//서버의 데이터 얻어오기
+		if(xhr.readyState==4 && xhr.status==200){//요청
+			var v2 = xhr.responseText; //★중요
+			console.log("v2 = " + v2);
+			var d3 = document.getElementById("d3");
+			d3.innerHTML = v2; 
+		}
+	}
+</script>
+</head>
+<body>
+	<h3>Ajax 테스트</h3>
+	<hr>
+	<form action="" name="frm">
+		<input name="username" type="text">
+	</form>
+	<br>
+	<input type="button" value="문서조작1" onclick="mainpulationDoc()">
+	<br><br>
+	<input type="button" value="문서조작2" onclick="mainpulationDoc2()">
+	<br><br>
+	<input type="button" value="문서조작3" onclick="mainpulationDoc3()">
+	<div id="d1"></div>
+	<div id="d2"></div>
+	<div id="d3"></div>
+</body>
+</html>
