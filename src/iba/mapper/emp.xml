@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<!-- emp.xml -->
+<sqlMap namespace="emp">
+  <select id="selectNames" resultClass="String">
+      select ename from emp
+  </select>
+   <!-- Emp e = new Emp();
+       e.setEname("홍길동");
+      또는
+   Emp e2 = new Emp(8000,"길라임","2018-07-27");    
+       
+  smc.queryForList("emp.selectInfo", e 또는 e2); -->
+  <select id="selectInfo" 
+          resultClass="com.encore.s0727.vo.Emp"
+          parameterClass="int">
+     select empno,ename,hiredate
+     from emp
+     where deptno=#deptno#
+  </select>
+<!--부서번호 중 최소값-->
+<select id="selectMinDeptno" resultClass="int"> select min(deptno) from dept </select>
+
+<!--부서번호 존내 유무-->
+<select id="selectExistDeptno" parameterClass="int" resultClass="int">
+	select count(*) from dept
+	where deptno=#deptno#
+</select>
+
+
+</sqlMap>
+
+
+
+
+
+
+
+

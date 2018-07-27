@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
 <sqlMap namespace="guest">
-  <insert id="insert" parameterClass="guest.vo.Guest">
+  <insert id="insert" parameterClass="com.encore.guest.vo.Guest">
      insert into guest
        <isNotEmpty property="contents">
           (no,writer,email,tel,pass,contents,wdate)
@@ -27,7 +27,7 @@
 		        #pass#, sysdate)
   </insert> -->
   
-  <select id="selectAll" resultClass="guest.vo.Guest">
+  <select id="selectAll" resultClass="com.encore.guest.vo.Guest">
      select no,writer,tel,contents,wdate
      from guest
      order by no desc
@@ -35,7 +35,7 @@
   
   <!-- 한페이지(한 화면)에서 보여질 만큼만 조회(예:조회된 레코드 위에서 10개) -->
   <!-- 1페이지(첫페이지) 조회 -->
-  <select id="selectPage" resultClass="guest.vo.Guest"
+  <select id="selectPage" resultClass="com.encore.guest.vo.Guest"
                           parameterClass="java.util.Map" ><![CDATA[
     
 	select no,writer,tel,contents,wdate
@@ -50,7 +50,7 @@
   ]]></select>
   
   <!-- 2페이지 조회 -->
-  <select id="selectPage2" resultClass="guest.vo.Guest"><![CDATA[
+  <select id="selectPage2" resultClass="com.encore.guest.vo.Guest"><![CDATA[
     
 	select no,writer,tel,contents,wdate
 	from (select no,writer,tel,contents,wdate,rownum rn
@@ -64,7 +64,7 @@
   ]]></select>
   
   <!-- 3페이지 조회 -->
-  <select id="selectPage3" resultClass="guest.vo.Guest"><![CDATA[
+  <select id="selectPage3" resultClass="com.encore.guest.vo.Guest"><![CDATA[
     
 	select no,writer,tel,contents,wdate
 	from (select no,writer,tel,contents,wdate,rownum rn
@@ -79,7 +79,7 @@
   
   <!-- 수정폼에 출력할 데이터 조회 -->
   <select id="select" 
-          resultClass="guest.vo.Guest"
+          resultClass="com.encore.guest.vo.Guest"
           parameterClass="int">
      select writer,email,tel,pass,contents
      from guest
@@ -91,7 +91,7 @@
       select count(*) from guest
   </select>
   
-  <update id="update" parameterClass="guest.vo.Guest">
+  <update id="update" parameterClass="com.encore.guest.vo.Guest">
      update guest set writer=#writer#, email=#email#,
                  tel=#tel#, pass=#pass#, contents=#contents#
      where no=#no#    

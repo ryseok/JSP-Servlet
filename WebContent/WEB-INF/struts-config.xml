@@ -171,9 +171,13 @@
 	<action path="/tiles/form"
 			forward=".form"/>	
 	<action path="/tiles/login"
-			forward=".login"/>	
-		
-		
+			forward=".login"/>
+
+	<!-- ajax가 필요로 하는 데이터 요청 처리 -->
+	<action path="/0727/response8"
+			type="com.encore.s0727.actions.EmpAction">
+		<forward name="response8" path="/0727/response8.jsp" />
+	</action>	
 		
 		
 		
