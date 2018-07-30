@@ -65,7 +65,8 @@ insert into guest (no,writer,email,tel,pass,contents,wdate) values (guest_seq.ne
    
    
 select * from GUEST;   
-   
+
+
 
 
 
