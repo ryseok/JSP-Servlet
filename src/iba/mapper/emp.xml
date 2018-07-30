@@ -27,6 +27,15 @@
 	where deptno=#deptno#
 </select>
 
+<select id="selectKeyword" resultClass="String" parameterClass="String">
+select ename from emp where upper(ename) like upper(#ename#)
+</select>
+
+<select id="selectEmpInfo" parameterClass="String" resultClass="com.encore.s0730.vo.Emp">
+     select empno,ename,to_char(hiredate,'yyyy"년 "mm"월 "dd"일"') hiredate,dname
+     from emp natural join dept
+     where ename=#ename#
+</select>
 
 </sqlMap>
 

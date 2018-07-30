@@ -1,0 +1,31 @@
+<미션1>
+- suggest2.html(suggest.html복사해서 요청페이지만 suggest2.jsp로 변경!!)
+  ----> <input type=text name=keyword>에 '사원명' 키보드 입력
+  ----> 'A' 입력시
+                           출력 ----> ALLEN
+                       ADAMS
+  ----> 'a' 입력시
+                           출력 ----> ALLEN
+                       ADAMS
+- suggest2.jsp (DB조회)
+
+1. sql문 작성 (emp.xml)  id="selectKeyword"
+2. DAO메소드 추가
+3. suggest2.jsp에서 <%!   %> 삭제
+    ---> DAO호출
+
+<미션2>
+- 사원정보 출력하기
+- 위<미션>의 제시된 사원중 한명을 선택 후 '검색'버튼 클릭시 
+  사원의 정보(사원번호,사원명,입사일,부서명)를 브라우저에 출력하기
+  
+예)  <h3>MARTIN사원의 정보</h3>
+     ----------------------
+         사원번호: 7654
+         사원명: MARTIN
+         입사일: 1981년 09월 28일
+         부서명: SALES
+         
+1. sql문 작성 emp.xml(id=selectEmpInfo)
+2. DAO메소드 추가  (selectEmpInfo(ename))
+3. 출력할 JSP페이지 (empInfo.jsp)

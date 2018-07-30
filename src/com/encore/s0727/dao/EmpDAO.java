@@ -29,6 +29,21 @@ public class EmpDAO {
 		return list;
 	}
 
+	public List<String> selectKeyword(String ename) {
+		List<String> list = null;
+		try {
+			list = smc.queryForList("emp.selectKeyword", ename);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public List<com.encore.s0730.vo.Emp> selectEmpInfo(String ename) throws SQLException {
+		return smc.queryForList("emp.selectEmpInfo",ename);
+	}
+
 	public int selectMinDeptno() {
 		Integer minNo = 0;
 		try {
@@ -41,9 +56,9 @@ public class EmpDAO {
 
 	public boolean selectExistDeptno(int deptno) {
 		try {
-			Integer count = (Integer) smc.queryForObject("emp.selectExistDeptno",deptno);
-			
-			if(count>0) {
+			Integer count = (Integer) smc.queryForObject("emp.selectExistDeptno", deptno);
+
+			if (count > 0) {
 				return true;
 			}
 		} catch (SQLException e) {

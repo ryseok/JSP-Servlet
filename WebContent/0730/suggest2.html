@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>제시어기능_DB</title>
+<script type="text/javascript" src="../js/ajax.js"></script>
+<script type="text/javascript" src="../js/0730.js"></script>
+</head>
+<!-- suggest.html -->
+<body>
+	<form name="searchForm">
+		<input type="text" name="keyword" onkeydown="startSuggest()">
+		<button type="button" onclick="searchInfo()">검색</button>
+
+		<!-- 바깥div: 스타일 적용(보여라,숨겨라), 안div: 제시어출력 -->
+		<div id="suggest" style="display:; position: absolute; left: 10px; top: 32px">
+			<div id="suggestList"></div>
+		</div>
+	</form>
+	<div id="employeeInfo"></div>
+</body>
+</html>
