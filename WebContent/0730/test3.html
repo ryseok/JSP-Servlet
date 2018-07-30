@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+  <script type="text/javascript" src="../js/ajax.js"></script>
+  <script type="text/javascript">
+     function requestToServer(){
+    	 sendRequest('dataprint.jsp',null,myfun);
+     }
+      
+  
+     function myfun(){
+       if(xhr.readyState==4 && xhr.status==200){
+           var d1 = document.getElementById('d1');
+           
+           //★서버가 출력한 (HTML)데이터 얻어오기 --> text 또는 xml로 얻어오기
+           // String str   = xhr.responseText; (텍스트,HTML,JSON,Array)
+           // Document doc = xhr.responseXML;
+           //주의할 사항) xhr.responseXML의 경우
+           //          JSP페이지에서   contentType='text/xml'을 명시해야 함!!
+           var str = xhr.responseText;
+           d1.innerHTML=str;
+       }
+     }
+       
+     
+  </script>
+</head>
+<!-- test3.html -->
+<body>
+   <button onclick="requestToServer()">눌러봐</button><br>
+   Hello
+   <div id="d1"></div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+  <script type="text/javascript">
+     var xhr = new XMLHttpRequest();
+     
+     function requestToServer(){
+      //서버에게 데이터 요청(URL요청)
+      //자바스크립트이 XMLHttpRequest객체를 사용	 
+       xhr.open('GET', 'dataprint.jsp', true);
+       xhr.onreadystatechange=myfun;
+       //데이터 요청후 응답할때 까지 상태가 변할 때 호출될 함수 정의
+       xhr.send(null);//POST요청시 전달될 데이터
+     }
+      
+  
+     function myfun(){
+      //요청에서 응답까지의 상태변경시 호출(1,2,3,4)
+       if(xhr.readyState==4){
+          if(xhr.status==200){
+       var d1 = document.getElementById('d1');
+       //d1 자료형? Element ---> innerHTML속성을 통한 문서 조작할 수 있음!!
+       //d1.innerHTML ---> <div>시작태그와 </div>끝태그 내부의 HTML
+       
+       //문서조작
+       
+       //d1.innerHTML=외부데이터!! ----> ajax를 사용하자!!
+               var str = xhr.responseText;
+               d1.innerHTML=str;
+          }else{
+        	  alert('서버에러:'+xhr.status)
+          }
+       }
+     }
+       
+       
+     //전체 HTML문서가 브라우저 로딩될때(출력되었을때)까지 기다리기!!
+     window.onload=function(){
+    	//이벤트: 특정버튼 클릭이나 체크박스 체크 또는 마우스 움직임 없이
+     }
+     
+  </script>
+</head>
+<!-- test2.html -->
+<body>
+   <button onclick="requestToServer()">눌러봐</button><br>
+   Hello
+   <div id="d1"></div>
+</body>
+</html>
+
+
+

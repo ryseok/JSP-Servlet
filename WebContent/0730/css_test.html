@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--스타일 정의-->
+<style type="text/css">
+/* 태그명, #아이디명, .클래스명 : 선택자(selector)*/
+/* 태그명 {스타일정의} : 스타일정의는 스타일명 : 스타일값 */
+/* #아이디명 {스타일정의} : 스타일정의는 스타일명 : 스타일값 */
+/* .클래스명 {스타일정의} : 스타일정의는 스타일명 : 스타일값 */
+div {
+	background: yellow;
+	text-align: center;
+}/* div 태그명 찾아  노란색으로 변하고 가운데 정렬 된다.*/
+
+#d1{
+	background: green;
+	text-align: right;
+}/* 아이디명을 찾아 초록색으로 오른쪽 정렬 */
+
+.c1{
+	background: blue;
+	text-align: left;
+}/* 클래스명 찾아 파란색으로 왼쪽 정렬 */
+</style>
+
+<!--
+외부CSS참조 : link 엘리먼트 사용
+rel속성 : 무엇과 관련 있는 참조
+type="test/css" : 생략 가능
+-->
+<link href="test.css" rel="stylesheet" type="test/css">
+
+</head>
+<!--css_test.html-->
+<body>
+<!--
+	<div style="background: red;">디브1</div>
+	<br>
+	<div style="background: green;">디브2</div>
+	<br>
+	<div style="background: blue;">디브3</div>
+	css도 따로 둔다
+-->
+	<div id="d1">디브1</div>
+	<br>
+	<div id="d2" class="c1">디브2</div>
+	<br>
+	<div id="d3" class="c2">디브3</div>
+	<p>NaDa</p>
+</body>
+</html>

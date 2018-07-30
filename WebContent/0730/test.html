@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+  <script type="text/javascript">
+  
+     function myfun(){
+       var d1 = document.getElementById('d1');
+       //d1 자료형? Element ---> innerHTML속성을 통한 문서 조작할 수 있음!!
+       //d1.innerHTML ---> <div>시작태그와 </div>끝태그 내부의 HTML
+       d1.innerHTML='<br>gildong'; //<div><br>gildong</div>
+     }
+       
+       
+     //전체 HTML문서가 브라우저 로딩될때(출력되었을때)까지 기다리기!!
+     window.onload=function(){
+    	//이벤트: 특정버튼 클릭이나 체크박스 체크 또는 마우스 움직임 없이
+     }
+     
+  </script>
+</head>
+<!-- test.html -->
+<body>
+   <button onclick="myfun()">눌러봐</button><br>
+   Hello
+   <div id="d1"></div>
+</body>
+</html>
+
+
+
