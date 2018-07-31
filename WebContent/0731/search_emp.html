@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>미션2</title>
+<script type="text/javascript" src="../js/ajax.js"></script>
+<script type="text/javascript" src="../js/0731_mission02.js"></script>
+</head>
+<body>
+	<h2>사원정보 출력</h2>
+	<hr>
+	<input type="radio" name="kind" checked value="ename">사원명
+	<input type="radio" name="kind" value="dname">부서명
+	<input type="radio" name="kind" value="job">직책명
+	<br>
+	<input type="text" id="search">
+	<input type="button" value="검색" onclick="load()">
+	<hr>
+	<div id="d1"></div>
+</body>
+</html>

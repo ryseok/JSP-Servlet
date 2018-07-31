@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="addr">
+	<select id="sido" resultClass="String">
+		select distinct ds_sido from ds_zip	
+	</select>
+	
+ 	<select id="gugun" resultClass="String" parameterClass="String">
+		select distinct ds_gugun from ds_zip
+		where ds_sido=#sido#	
+	</select>
+	
+	<select id="dong" resultClass="String" parameterClass="java.util.Map">
+		select ds_dong from ds_zip
+		where ds_gugun=#gugun# and ds_sido=#sido#
+		order by ds_dong
+	</select>
+</sqlMap>

@@ -9,7 +9,7 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import iba.MySqlMapClient;
 
 public class EmpDAO {
-	SqlMapClient smc;
+	SqlMapClient smc;	
 
 	public EmpDAO() {
 		smc = MySqlMapClient.getSqlMapInstance();

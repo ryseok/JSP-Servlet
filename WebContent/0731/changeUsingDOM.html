@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DOM을 사용한 변경(조작)</title>
+<script type="text/javascript">
+     var cnt = 0;
+     
+     function appendItem(){
+		cnt++;
+    	//document.createElement(String tagName)
+		//newItem의 자료형? Element ---> innerHTML, 속성관련, Node로 부터 상속받은 기능
+		//<div></div>
+       	var newItem = document.createElement("div");
+       	
+       	//<div id="item_"></div> 만들어짐
+       	newItem.setAttribute("id","item_"+cnt);
+       
+        var htmlTxt="새로 추가된 아이템["+cnt+"]"+
+        ' <input type="button" value="삭제" onclick="removeItem('+cnt+')">';
+       
+      	//<div id="item_>새로 추가된 아이템</div>
+       	newItem.innerHTML=htmlTxt;
+       
+     	//부모노드 얻기
+       	var itemList = document.getElementById('itemList');
+       
+       	//부모노드.appendChild(자식노드);
+       	itemList.appendChild(newItem);
+     }
+     
+     function removeItem(no) {
+    	 //파라미터 no에 해당하는 div엘리먼트 찾기
+         
+    	 //삭제할 노드 정보 얻기
+    	 var delItem = document.getElementById('item_'+no);
+      	 
+         /*
+         //부모노드 얻기
+         var itemList = document.getElementById('itemList');
+
+         //부모노드.removeChild(자식노드);
+         itemList.removeChild(delItem);
+         */
+         
+		 //이유: DOM프로그램 실행시 delItem의 부모는 언제든지 변할 수 있기 때문에 사용
+    	 delItem.parentNode.removeChild(delItem);
+	}
+   </script>
+</head>
+<!-- changeUsingDOM.html -->
+<body>
+	<input type="button" value="추가" onclick="appendItem()">
+	<div id="itemList"></div>
+</body>
+</html>

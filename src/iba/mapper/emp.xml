@@ -37,6 +37,38 @@ select ename from emp where upper(ename) like upper(#ename#)
      where ename=#ename#
 </select>
 
+<select id="info" parameterClass="java.util.Map" resultClass="com.encore.s0731.vo.EmpInfo">
+select empno,ename,hiredate,dname,job from emp natural join dept
+<isNotNull property="ename">where ename like #ename#</isNotNull>
+ <!--  Map에 'ename'키가 존재한다면  -->
+<isNotNull property="dname">where dname like #dname#</isNotNull>
+<isNotNull property="job">where job like #job#</isNotNull>
+</select>
+ <!--
+   
+  <select id="info1" parameterClass="String"
+                resultClass="com.encore.s0731.vo.EmpInfo">
+     select empno,ename,hiredate,dname,job
+     from emp  natural join dept
+     where ename like #ename#
+  </select>
+  
+  <select id="info2" parameterClass="String"
+                resultClass="com.encore.s0731.vo.EmpInfo">
+     select empno,ename,hiredate,dname,job
+     from emp  natural join dept
+     where dname like #dname#
+  </select>
+  
+  <select id="info3" parameterClass="String"
+                resultClass="com.encore.s0731.vo.EmpInfo">
+     select empno,ename,hiredate,dname,job
+     from emp  natural join dept
+     where job like #job#
+  </select>
+  
+-->
+
 </sqlMap>
 
 
