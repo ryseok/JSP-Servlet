@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>suggest복습</title>
+<script type="text/javascript" src="/struts/js/ajax.js"></script>
+<script type="text/javascript" src="/struts/review/JS/re_0730.js"></script>
+</head>
+<body>
+	<form name="searchForm">
+		<input type="text" name="keyword" onkeydown="startSuggest()">
+		<input type="button" value="검색" onclick="searchInfo()">
+		<div id="suggest"
+				style="display:; 
+				position: absolute; 
+				left: 10px; 
+				top: 32px">
+			<div id="suggestList"></div>
+		</div>
+	</form>
+
+	<div id="employeeInfo"></div>
+</body>
+</html>
