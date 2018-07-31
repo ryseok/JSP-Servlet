@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test</title>
+<script type="text/javascript" src="/struts/js/ajax.js"></script>
+<script type="text/javascript">
+function load() {
+	sendRequest("/struts/0727/response1.jsp",null,loaded);
+}
+
+function loaded() {
+	if(xhr.readyState == 4 && xhr.status == 200){
+		var str = xhr.responseText;
+		var get = document.getElementById("output");
+		output.innerHTML = str;
+	}
+}
+
+function loadDel() {
+	
+}
+</script>
+</head>
+<body>
+	<input type="button" value="GET" id="get" onclick="load()">
+	<input type="button" value="DELETE" id="delete" onclick="loadDel()">
+	<br>
+	<textarea rows="10" cols="30" id="output"></textarea>
+</body>
+</html>
