@@ -46,11 +46,42 @@
 		 //이유: DOM프로그램 실행시 delItem의 부모는 언제든지 변할 수 있기 때문에 사용
     	 delItem.parentNode.removeChild(delItem);
 	}
+     
+     function delD1(){
+     	//부모노드.removeChild(자식노드); 
+     	//body엘리먼트.removeChild(d1엘리먼트); 
+     	var body = document.getElementsByTagName('body').item(0);
+     	            //NodeList [<body>]
+     	            //          item(0)
+     	var d1 = document.getElementById('d1');
+         body.removeChild(d1);    	            
+      }
+      
+     function delD2(ele){
+    	  alert('ele>>>'+ele);	 
+          alert('ele부모>>>'+ele.parentNode );	 
+          alert('ele부모부모>>>'+ele.parentNode.parentNode );
+     	
+          var fa = ele.parentNode;
+          var grandFa = ele.parentNode.parentNode;
+          
+          fa.parentNode.removeChild(fa);
+          //html엘리먼트.removeChild(d2엘리먼트);
+/*      	 var html = document.getElementsByTagName('html').item(0);
+          var d2 = document.getElementById('d2');
+          html.removeChild(d2); */
+      } 	
    </script>
 </head>
 <!-- changeUsingDOM.html -->
 <body>
-	<input type="button" value="추가" onclick="appendItem()">
-	<div id="itemList"></div>
+   <input type="button" value="추가" onclick="appendItem()">
+   <div id="itemList"></div>
+   <div id="d1">
+     나디브 <input type="button" value="삭제" onclick="delD1()"> 
+   </div>
 </body>
+   <div id="d2">
+    너디브 <input type="button" value="삭제" onclick="delD2(this)"> 
+   </div>
 </html>

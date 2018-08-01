@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사용자 객체</title>
+<script type="text/javascript" src="../js/member.js"></script>
+<script type="text/javascript" src="../js/member_json.js"></script>
+<script type="text/javascript">
+window.onload=function(){
+	var m = new Member("홍길동","gildong","980204-1012345");
+	var d1 = document.getElementById("d1");
+	d1.innerHTML="변경전===>"+m;
+	d1.innerHTML +="<br>나이"+m.getAge();
+	
+ 	//Member값 변경
+	//m.setValue(name, id, securityNo)
+	m.setValue("나길동", 'nagildong', '080801-3012345')
+	d1.innerHTML +='<br><br>변경후==> '+ m.toString();
+	d1.innerHTML += '<br>나이: '+ m.getAge();
+	
+	//var mem={}; == var mem = new Object();
+	var mem={name:"자!",favoriteColors:["파랑","초록","초록"], etc:[{poket:"피카츄"}]};
+	d1.innerHTML +="<br><br>이름은" + mem.name+"이고 좋아하는 색상은"+mem.favoriteColors.length+"개 이고<br> 그중 첫번째 색은" 
+	+ mem.favoriteColors[0]+"입니다."
+	d1.innerHTML += "<br>"+mem.etc[0].poket;
+	
+	var mem2 = new Member("라임", "tree", "950302-2012345");
+	d1.innerHTML += "<br><br>" + mem2.toString();
+	d1.innerHTML += "<br>나이 : " + mem2.getAge();
+}
+</script>
+</head>
+<body>
+<div style="border: 1px solid red;" id="d1"></div>
+</body>
+</html>

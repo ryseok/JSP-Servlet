@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>멤버정보얻어오기</title>
+  <script type="text/javascript" src="../js/ajax2.js"></script>
+  <script type="text/javascript" src="../js/member.js"></script>
+  
+  <script type="text/javascript">
+    var cnt = 0; 
+  	function loadXML(){
+  		cnt++;
+        new ajax.xhr.Request('member_xml.jsp?a='+cnt, null, loadedXML);  	 
+     }
+     function loadedXML(xhr){
+    	if(xhr.readyState==4 && xhr.status==200){
+    		var doc = xhr.responseXML;//doc자료형: Document
+    		var code = doc.getElementsByTagName("code")//NodeList[<code>]
+    		               .item(0)   // 첫번째 <code>엘리먼트
+    		               .textContent; //'success'문자열
+            if(code==='success'){
+            	var name = doc.getElementsByTagName('name').item(0).textContent;
+            	var id = doc.getElementsByTagName('id').item(0).textContent;
+            	var sno = doc.getElementsByTagName('sno').item(0).textContent;
+            	
+            	var mem = new Member(name, id, sno);//요청한 데이터를  mem으로 묶기
+            	
+            	//요청한 데이터를 출력할 영역얻기
+            	var d1 = document.getElementById('d1');
+            	d1.innerHTML=mem;
+            	d1.innerHTML += '<br>나이: '+ mem.getAge();
+            }else{//code=='fail'
+            	var msg = doc.getElementsByTagName('msg').item(0).textContent;
+            	var d1 = document.getElementById('d1');
+            	d1.innerHTML= '<font color=red>'+ msg +"</font>" ;
+            }    		               
+    	} 
+     }
+     
+     function loadJSON(){
+    	 new ajax.xhr.Request('member_json.jsp',null,loadedJSON);
+     }
+     function loadedJSON(xhr){
+    	 if(xhr.readyState==4 && xhr.status==200){
+    		 //var str = xhr.responseText;//str자료형? String
+    		 var jStr = eval("("+xhr.responseText+")");//jStr자료형? JSON
+    		 if(jStr.code==='success'){
+    			/*  var name= jStr.data.member.name;
+    			 var id=   jStr.data.member.id;
+    			 var sno=  jStr.data.member.sno; */
+    			 var m = jStr.data.member;
+    			 var mem = new Member(m.name, m.id, m.sno);
+    			 
+    			 //출력할 HTML찾기
+    			 var d1 = document.getElementById('d1');
+    			 d1.innerHTML= '<font color=blue>'+mem
+    			               +'<br>나이='+ mem.getAge()+'</font>';
+    		 }		 
+    	 }
+     }
+     
+     function loadJSONs() {
+		//new ajax.xhr.Request("member_jsons.jsp",null,loadedMER_JSONs);
+		new ajax.xhr.Request("member_jsons.jsp", null, function(xhr) {
+		if(xhr.readyState==4 && xhr.status==200){
+			 var str = eval(xhr.responseText);
+			 var d1 = document.getElementById('d1');
+			 d1.innerHTML='';
+			 for(var i=0; i<str.length; i++){
+				var mem =  new Member( str[i].name,str[i].id,str[i].sno);
+				
+			 }
+		
+			 
+			 d1.innerHTML = mem.toString()
+             + '<br>나이: '+mem.getAge()+ '세<hr color=red>';
+		}
+			
+			
+		});
+	}
+
+  </script>
+</head>
+<!-- loadMemberTest.html -->
+<body>
+   <h3>멤버정보(XML,JSON,XML과JSON)얻어오기</h3>
+   <hr>
+   <button onclick="loadXML()">XML정보</button>
+   <button onclick="loadJSON()">JSON정보</button>
+   <button onclick="loadJSONs()">JSONs정보</button>
+   <div id="d1" style="border: 1px solid green;"></div>
+</body>
+</html>

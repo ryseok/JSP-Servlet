@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+   <script type="text/javascript" src="../js/ajax2.js"></script>
+   <script type="text/javascript">
+      function gildong(su){
+    	  alert('동에번쩍'+su);
+    	  function lime(){
+    		  
+    	  }
+      }
+      
+      //함수는 객체다!!
+      
+      //var gildong = new Date();
+      var gildong = function(su){
+    	  alert('서에번쩍'+su);
+      }
+      
+      //var gildong = new Function('인자1','인자2',.....,'실행할 자바스크립트코드');
+      var gildong = new Function('su','alert("동서남북"+su);');
+      //비권장
+      
+      function load(){//데이터 요청!!
+    	 new ajax.xhr.Request('dataOut.jsp', null,loaded);
+      }
+      function loaded(xhr){
+    	 if(xhr.readyState==4){
+    		var str = xhr.responseText;
+    		alert(str);
+    	 } 
+      }
+   </script>
+</head>
+<!-- test.html -->
+<body>
+    <button onclick="gildong(100)">나버튼</button>
+    <br>
+    <button onclick="load()">데이터요청</button>
+</body>
+</html>
+
+

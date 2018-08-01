@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//클래스명 = function(매개변수) {}
+		Member = function(id, name, age) {
+			//alert("멤버 생성자"); //호출 되는지 확인 과정
+			
+			//멤버속성 정의 ===> this
+			this.id = id;
+			this.name = name;
+			this.age = age;
+		}
+		
+		
+		Member.prototype.toString = function(){ //클래스객체내에 메소드 정의!!
+			return this.id + '[' + this.name + "," + this.age + ']';
+		}
+
+		Member.prototype.setAge = function (age){
+			this.age = age;
+		}
+
+		Member.prototype.getAge = function (){
+			return this.age;
+		}
+		
+		var m1 = new Member('gildong', '허균', 16);
+		//alert('m1.toString()=' + m1.toString());
+		//alert('m1=' + m1);
+		alert("변경전====>"+m1);
+		m1.setAge(17);
+		alert("변경후===>"+m1);
+		alert('m1의 나이: '+ m1.getAge());
+		
+		var m2 = new Member();
+		alert(m2);
+	</script>
+
+</body>
+</html>
