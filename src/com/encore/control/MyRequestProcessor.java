@@ -11,7 +11,7 @@ import org.apache.struts.tiles.TilesRequestProcessor;
 public class MyRequestProcessor  extends TilesRequestProcessor{ //RequestProcessor{
 	@Override
 	protected boolean processPreprocess(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("MyRequestProcessor");
+		//System.out.println("MyRequestProcessor");
 		
 		try {
 			request.setCharacterEncoding("UTF-8");

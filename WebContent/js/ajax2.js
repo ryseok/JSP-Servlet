@@ -1,6 +1,8 @@
+
+
 //ajax2.js
 
-var ajax = {};
+var ajax = {};//var ajax = new Object();
 ajax.xhr = {}; // ajax.xhr패키지정의
 
 
@@ -47,18 +49,19 @@ ajax.xhr.Request.prototype = {
 		this.xhr.setRequestHeader(
 			'Content-Type', 'application/x-www-form-urlencoded');
 
-		var request = this; //
+		var request = this; 		
+		
 		this.xhr.onreadystatechange = function() {//
-			request.onStateChange.call(request);
-                  //XMLHttpRequest객체의 readyState값이 바뀔 때 
-                  //이 객체(Request객체)의 onStateChange함수 호출
+			//request.onStateChange.call(request);
+			//request.onStateChange();			
+			
+			//request.callback(request.xhr);
+			request.callback(this);
+			
+            //XMLHttpRequest객체의 readyState값이 바뀔 때 
+            //이 객체(Request객체)의 onStateChange함수 호출
 		}
 		this.xhr.send(httpMethod == 'POST' ? httpParams : null);
 	}//send()함수
-	,
-	onStateChange: function() {
-		this.callback(this.xhr);
-                //이 객체의 callback 프로퍼티에 할당된 함수를 호출한다.
-                //이때 인자로 this.req객체를(XMLHttpRequest객체를) 전달한다.
-	}
+	
 }

@@ -190,10 +190,21 @@
 		<forward name="fail" path="/review/fail.jsp"></forward>		
 		<forward name="success" path="/review/success.jsp"></forward>		
 		</action>
+	
+	<!--0802 수업  -->
+	<!--댓글 컨트롤러(/struts/reply.do 요청)-->
+	<action path="/reply"
+			type="com.encore.s0802.actions.ReplyAction">
+			
+			<!--  (Action-execute()메소드 실행후 결과 화면에 대한)경로 등록  -->
+			<forward name="list" path="/0802/reply_list.jsp"></forward>
+			<forward name="result" path="/0802/reply_result.jsp"></forward>
+	</action>
     </action-mappings>
     
 	<controller processorClass="com.encore.control.MyRequestProcessor"></controller>
-
+	
+	
 <!-- ======================================== Message Resources Definitions -->
 
     <!-- <message-resources parameter="MessageResources" /> -->

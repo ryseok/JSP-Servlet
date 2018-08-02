@@ -1,0 +1,5 @@
+//<프로그램 흐름>
+//         reply.do?action=               dao.메소드명()        smc.메소드(아이디)        
+// HTML   ------------------->   Action  --------------> DAO  ----------> XML(sql)       
+//        <-------    JSP  -----         <-------------       <---------
+//responseText      getAttr()   setAttr()     return타입                  resultClass 

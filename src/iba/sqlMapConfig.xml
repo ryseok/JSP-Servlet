@@ -32,6 +32,10 @@
   <sqlMap resource="./iba/mapper/guest.xml" />
   <sqlMap resource="./iba/mapper/emp.xml"/>
   <sqlMap resource="./iba/mapper/addr.xml"/>
+  <sqlMap resource="./iba/mapper/reply.xml"/>
+  
+  <!--에러남 이딴거 뭐임??? 라고 메시지 뜸 ㅡㅡ -->
+  <!-- <sqlMap resource="./iba/mapper/*" /> -->
   
 </sqlMapConfig>
 
