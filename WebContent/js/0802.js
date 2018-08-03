@@ -137,5 +137,6 @@ function removeResult(xhr) {
 }
 
 window.onload = function() { //HTML페이지를 브라우저에 전부 출력하고(로딩이 끝마쳐진 후)
-	loadReplyList();
+	
 }
+
