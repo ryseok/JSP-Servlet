@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQeury_test</title>
+
+<style type="text/css">
+.intro { border: 1px dotted red; font: red }
+</style>
+
+<!--이거 사용해도 jQuery 사용 가능-->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+	//문서가 서비스할 준비가 되었다면 : HTML문서가 브라우저에 출력(로딩) 되었다면
+	$(document).ready(function() {
+	//$("div") : 모든 <div> 가지고 온다
+	$("div").html("<font color=red size=6>hello jqeury</font>");
+	
+	$("#b1").click(function() { //삭제(div 태그) 버튼
+			$("div").hide(1000);
+		});
+	$("#b2").click(function() { //복구(div 태그) 버튼
+			$("div").show(1000);
+		});
+	
+	$("#b3").click(function() { //(intro)삭제 버튼
+			$(".intro").hide(1000); //class = intro속성을 갖은 모든 엘리먼트들
+		});
+
+	$("#b4").click(function() { //(p태그 intro)삭제 버튼
+			$("p.intro").hide(1000); //p엘리먼트중 class = intro속성을 갖은 엘리먼트들
+		});
+	
+	$("#b5").click(function() { //모두삭제 버튼
+			$("*").hide(1000); 	//모두 삭제
+		});
+	});
+</script>
+
+</head>
+<!--jQeury_test.html-->
+<body>
+	<h2>jQeury_test</h2>
+	<hr>
+	<div class="intro"></div>
+	<div class="intro"></div>
+	<div class="intro"></div>
+	<p class="intro">문단1</p>
+	<p class="intro">문단2</p>
+	<p class="intro">문단3</p>
+	
+	<button id="b1">삭제(div 태그)</button>
+	<button id="b2">복구(div 태그)</button>
+	<button id="b3">삭제(intro)</button>
+	<button id="b4">삭제(p태그 intro)</button>
+	<button id="b5">모두 삭제</button>
+</body>
+</html>

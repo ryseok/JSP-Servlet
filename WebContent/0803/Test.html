@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 함수 Test</title>
+<script type="text/javascript">
+	function test2() {
+		alert("아이디 등록하시오!");
+	}
+	
+	window.onload=function(){
+		var d3 = document.getElementById("d3");
+		d3.onclick=function(){
+			alert("회원가입 되었습니다!");
+		}
+	}
+</script>
+</head>
+<!--Test.html-->
+<body>
+	<h2>자바스크립트 함수 Test</h2>
+	<button onclick="alert('안녕')">드루와1</button>
+	<br>
+	<button onclick="test2()">드루와2</button>
+	<br>
+	<button id="d3">드루와3</button>
+	<br>
+	<input type="email" value="이메일 입력">
+</body>
+</html>
