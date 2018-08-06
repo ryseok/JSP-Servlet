@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		/* $("#p1").mouseenter(function() {
+			alert("p1 영역에 진입 성공");
+		});
+		
+		$("#p1").mouseleave(function() {
+			alert("ㅂ2");
+		}); */
+
+		/* 		$('#p1').hover(function(){alert('동서')},function(){alert('남북')});
+		 $("#p2").mousedown(function() {alert("마우스 클릭")});
+		 $('#p2').mouseup(function(){alert("마우스업")});
+		 $('#p3').click(function(){alert('p3클릭!!')}); */
+
+		$("p").on({
+			mouseenter : function() {
+				$(this).css("background-color", "lightgray");
+			},
+			mouseleave : function() {
+				$(this).css("background-color", "lightblue");
+			},
+			click : function() {
+				$(this).css("background-color", "yellow");
+			}
+		});
+	});
+</script>
+</head>
+<!--jq_test.html-->
+<body>
+	<h2>이벤트 Test</h2>
+	<hr>
+	<p id="p1"
+		style="background-color: yellow; height: 100px; width: 100px">
+		소나기<br>그리고 더위
+	</p>
+
+	<p id="p2" style="background-color: blue; height: 100px; width: 100px">
+		소나기<br>그리고 더위
+	</p>
+
+	<p id="p3" style="background-color: green; height: 100px; width: 100px">
+		소나기<br>그리고 더위
+	</p>
+</body>
+</html>

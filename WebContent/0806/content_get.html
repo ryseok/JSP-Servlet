@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>content Test</title>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	/* $("#b1").click(function() {}); */
+	$(document).ready(function() {
+		$('#b1').click(function() {
+			alert($('a').attr('href'));
+		});
+
+		$("#b2").click(function() {
+			$('a').attr('href', 'https://www.daum.net');
+			$('a').text('다음 페이지로 이동');
+			alert('링크변경성공!!');
+		});
+
+		$("#b3").click(function() {
+			alert($('div').text());
+		});
+
+		$("#b4").click(function() {
+			$('div').text("<font color=green>디브</font>");
+		});
+
+		$("#b5").click(function() {
+			alert($('div').html());
+		});
+
+		$('#b6').click(function() {//파란색 '나디브' ---> 빨간색 '나디브'
+			$('div').html('<font color=green>나디브</font>');
+		});
+
+		$("#b7").click(function() {
+			/*var textarea = document.getElementsByTagName("textarea").item(0);
+			 textarea.innerHTML += "마르고 닳도록"; */
+
+			/*var p = document.getElementsByTagName("p").item(0);
+			 p.innerHTML += "<br>마르고 닳도록<br>"; */
+
+			/* $('p').html( $('p').html()+'<br>마르고 닳도록'); */
+
+			$('p').html(function(index, origin) {
+				if (index == 0) {
+					//return origin + "<br>마르고 닳도록" + index;
+					return origin + "<br>마르고 닳도록";
+
+				} else {
+					//return origin + "<br>철갑을 두른듯" + index;
+					return origin + "<br>철갑을 두른듯";
+
+				}
+			});
+		});//$("#b7").click
+		$("#b8").click(function() {
+			alert($("[name=username]").val());
+		});
+
+		$("#b9").click(function() {
+			$("[name=username]").val("나영석");
+		});
+	});//$(document).ready
+</script>
+</head>
+<!--content_get.html-->
+<body>
+	<h1>content값 얻어오기</h1>
+	<hr>
+	<a href="https://finance.naver.com/">네이버 증권이동</a>
+	<button id="b1">링크값 얻기</button>
+	<button id="b2">링크값 변경</button>
+	<hr>
+	<div>
+		<font color="red">디브</font>
+	</div>
+	<button id="b3">div값얻기(text)</button>
+	<button id="b4">div값얻기(text)</button>
+	<br>
+	<button id="b5">div값얻기(html)</button>
+	<button id="b6">div값얻기(html)</button>
+	<hr>
+	<p>동해물과 백두산이</p>
+	<p>남산위에 저소나무</p>
+	<button id="b7">가사추가</button>
+	<br>
+	<!-- 	<textarea rows="10" cols="30"></textarea> -->
+	<hr>
+	<input type="text" name="username">
+	<br>
+	<button id="b8">사용자명얻기</button>
+	<button id="b9">사용자명변경</button>
+</body>
+</html>

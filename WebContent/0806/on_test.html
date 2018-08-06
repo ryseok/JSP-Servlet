@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>on 함수</title>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#b1").click(function() {
+			var div = document.getElementsByTagName("div").item(0);
+			div.innerHTML += "<button>삭제</button><br>";
+		});
+
+		/* 
+		$('button').click(function(){
+		  $(this).hide();
+		});
+		----> 최초 document.ready할때 button태그가 없었으므로 무효!!
+		
+		
+		$('부모셀렉터').on('이벤트','자식셀렉터',할일);
+		----> document.ready하면서 부모셀렉터에 대한 '액션이벤트'를 정의하고
+		     동적으로 생성되는 자식엘리먼트에 대한 이벤트를 처리할 수 있음!! */
+
+		//방법1
+/* 		$('div').on('click', 'button', function() {
+			$(this).hide();
+		}); */
+
+		//방법2
+/* 		$(document).on('click', 'div > button', function() {
+		 	$(this).hide();
+		 }); */
+		 
+	});//$(document).ready
+</script>
+</head>
+<!--
+on_test.html
+#b1버튼 클릭시  <div>태그내에 <button>삭제</button><br>추가
+     
+각 '삭제'버튼 클릭시 해당버튼 삭제!!   ===> hide()함수 사용
+-->
+<body>
+	<h2>on function test</h2>
+	<input type="button" id="b1" value="버튼생성">
+	<hr>
+	<div></div>
+</body>
+</html>
