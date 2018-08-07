@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Na_DOM을 사용한 변경(조작)</title>
+   <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+   <script type="text/javascript">
+     
+     $(function(){//document.ready 기다려!!
+    	//$('input[type=button]').click(function(){//버튼클릭 이벤트
+    	$('#b1').click(function(){//버튼클릭 이벤트
+    		
+    	    var newDiv = $('<div></div>').text('새로운아이템');//<div>새로운아이템</div>
+    	        newDiv.append('<button>삭제</button>');
+    	    $('#itemList').append(newDiv);
+    	}); 
+    	
+    	$('#b2').click(function(){ $('#itemList').empty(); });
+     
+        $('#itemList').on("click", "button" ,function(){
+        	$(this).parent().remove();
+        });
+     
+     });//document.ready
+   
+     function appendItem(){}//appendItem
+     
+     function removeItem(){
+    	 alert('check!!')
+     }//removeItem
+   </script>
+</head>
+<!-- changeUsingDOM.html 
+     (jQuery DOM을 이용한 화면변경,조작 - append(), remove()사용 ) -->
+<body>
+   <input id='b1' type="button" value="추가">
+   <input id='b2' type="button" value="전체삭제">
+   <div id="itemList"></div>  
+</html>
+
+
+
+
