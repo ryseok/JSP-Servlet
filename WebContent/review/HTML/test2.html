@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>배민</title>
 <script src="/struts/js/jquery-3.3.1.min.js"></script>
 <script>
-	$(document).ready(function() {
-		$("#btn1").click(function() {
-			$("p").append(" <b>Appended text</b>.");
-		});
-
-		$("#btn2").click(function() {
-			$("ul").append("<li>Appended item</li>");
+	$(function() {
+		$("button").click(function() {
+			$("h1, h2, p").toggleClass("red");
+			$("div").toggleClass("important");
 		});
 	});
 </script>
+<style>
+.important {
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.red {
+    color: red;
+}
+</style>
 </head>
 <body>
 
-	<p>This is a paragraph.</p>
-	<p>This is another paragraph.</p>
+	<h1>치킨</h1>
+	<h2>AND</h2>
+	<p>맥주</p>
 
-	<ul>
-		<li>List item 1</li>
-		<li>List item 2</li>
-		<li>List item 3</li>
-	</ul>
+	<div>배민이면 먹을수 있다.</div>
 
-	<button id="btn1">Append text</button>
-	<button id="btn2">Append list items</button>
+	<button>궁금하면 눌러바</button>
 
 </body>
 </html>
