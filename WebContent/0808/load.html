@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>load.html</title>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("button").click(function() {
+			//$("div").load("요청URL"); 요청 URL에서 출력하는 값을 div에 innerHTML!!
+			//$("div").load("demo.txt"); //한글 깨짐
+			//$("div").load("demo.jsp"); //모든 엘리먼트 호출
+			//$("div").load("demo.jsp p"); //p태그만 얻어 온다
+			//$("div").load("demo.jsp p#ko"); //p태그중 id="ko" 얻어온다
+			
+			//요청 데이터에 대해  조작한 데이터를 필요로 하는 경우
+			//$('div').load('요청URL',function(출력데이터,서버의상태Text,XMLHttpRequest){})
+			$('div').load('demo.jsp',function(fromdata,statusTxt,xhr){
+				console.log("fromdata===>"+fromdata);
+				console.log("statusTxt===>"+statusTxt); //success OR error
+				console.log("xhr===>"+xhr);
+				
+				if(statusTxt=="success"){
+					alert("서버로 부터 데이터" + fromdata);
+				}else if(statusTxt=="error"){
+					alert('서버에러: '+ xhr.status + ','+xhr.statusText);
+					$("div").html(fromdata);
+				}
+			});
+		}); //버튼 클릭
+	}); //document.ready
+</script>
+</head>
+<!--load.html-->
+<body>
+	<h1>Ajax-load() Test</h1>
+	<hr>
+	<div>안녕</div>
+	<button>클릭 하면 무엇?</button>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test</title>
+<!--
+이렇게 하면 test.js 사용못함
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../js/test.js"></script>
+-->
+
+<!--test.js 사용가능 단! $대신 jQuery 그리고 $.noConflict(); 사용해야됨 ㅇㅋ?-->
+<script type="text/javascript" src="../js/test.js"></script>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+/*
+	방법 1
+	jQuery(function() {
+		jQuery(':button').on('click', function() {
+			alert(jQuery('input[name=name]').val());
+			alert('올해는 '+ $.getFullYear()+'년 입니다!!');
+		});
+*/
+	
+	/*방법 2*/
+/* 	$.noConflict();
+	jQuery(function() {
+		jQuery(':button').on('click', function() {
+			alert(jQuery('input[name=name]').val());
+			alert('올해는 '+ $.getFullYear()+'년 입니다!!');
+		}); */
+
+	/*방법 3*/
+    var jq = $.noConflict(); // '$'부호를 대신해서 'jq'를  사용하겠음
+    jq(function(){
+    	jq(':button').on('click',function(){
+    	   alert(jq('input[name=name]').val());
+    	   alert('올해는 '+ $.getFullYear()+'년 입니다!!');
+       });
+    });//document.ready
+</script>
+</head>
+<!-- test.html -->
+<body>
+	<h3>jQuery테스트</h3>
+	<hr>
+	이름:
+	<input type="text" name="name">
+	<input type="button" value="입력">
+</body>
+</html>

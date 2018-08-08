@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>filter.html</title>
+<style type="text/css">
+table {
+	width: 100%;
+	border-collapse: collapse;
+	font-family: arial, sans-serif;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	padding: 8px;
+	text-align: left;
+}
+
+th {
+	background-color: #dddddd;
+}
+</style>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("input[name=search]").keyup(function() {
+			var search = $(this).val().toUpperCase();
+			//console.log("search===>"+search);
+			//$("tr").filter(function() { //모든 tr
+			$("#myTable tr").filter(function() { //모든 tr
+				var txt = $(this).text().toUpperCase();
+				//console.log("txt===>"+txt);
+				//console.log("html===>"+$(this).html());
+				
+				//toggle() : show() 또는 hide() 실행
+				//엘리먼트.toggle(true) : 보이기
+				//엘리먼트.toggle(false) : 숨기기
+				$(this).toggle(txt.indexOf(search) > -1);
+			});
+		});
+	});//document.ready
+</script>
+</head>
+<!--filter.html-->
+<body>
+	<h1>filter Test</h1>
+	<hr>
+	<input type="text" name="search">
+	<br>
+	<br>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Email</th>
+			</tr>
+		</thead>
+		<tbody id="myTable">
+			<tr>
+				<td>나영석</td>
+				<td>40</td>
+				<td>Na@gmail.com</td>
+			</tr>
+			<tr>
+				<td>나누구</td>
+				<td>30</td>
+				<td>Who@naver.com</td>
+			</tr>
+			<tr>
+				<td>메로나</td>
+				<td>27</td>
+				<td>M@daum.net</td>
+			</tr>
+			<tr>
+				<td>애플</td>
+				<td>10</td>
+				<td>Apple@gmail.com</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

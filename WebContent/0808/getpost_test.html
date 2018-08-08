@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GET,POST요청</title>
+ <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+ <script type="text/javascript">
+    $(function(){
+       $('#bt1').click(function(){
+    	 //get요청: jQuery.get(url,callback);
+         //jQuery.get(URL,[data],function(data,status,xhr),dataType)
+         /* 
+         $.get('getData1.jsp',function(result,status){//result:결과HTML데이터
+        	//status='success' 또는 'error'
+        	$('div').html(result);
+         }); 
+         */
+         
+         $.get('getData1.jsp','name='+encodeURIComponent('길동'),function(result,status){//result:결과HTML데이터
+        	//status='success' 또는 'error'
+        	$('div').html(result);
+         });
+         
+       }); //bt1버튼클릭
+       
+       $('#bt2').click(function(){
+    	  //$.post(URL,data,callback);
+    	  $.post('getData2.jsp',
+    			  //{name:'길라임',age:15},
+    			  {name:$('[name=username]').val(),
+    			   age:$('[name=age]').val()},
+    			 function(result){
+    		       $('div').html(result);//innerHTML
+    		       $('input').val(''); //input내용 지우기!!
+    	  });
+    	   
+       });//bt2버튼 클릭
+       
+       $('#bt3').click(function(){
+    	   //$.ajax({name:value, name:value, ... })
+    	   $.ajax({
+    		  //-----------------[필수]----------------------------------
+    		  url:'getData3.jsp',//요청URL(요청페이지)
+    		  success: function(result){ //function success(result,status,xhr)
+                 $('div').html(result);    		  
+    		  },//성공시 콜백
+    		  //-----------------[데이터전달]------------------------------
+    		  
+    		  data:{//서버에 전달할 데이터(전달파라미터)
+    			 name:$('[name=username]').val(),
+   			     age:$('[name=age]').val()
+    		  },
+    		  //-----------------[그밖의 옵션]------------------------------
+              type:'POST',//HTTP요청방식(GET,POST)
+              dataType:'html',//응답데이터 형식(text,html,xml,json)
+                              //※주의: json은 반드시 명시!!
+              error:function(xhr,status,error){}//에러 콜백
+    		  //---------------------------------------------------------
+           });//ajax
+    	   
+       });//bt3버튼 클릭
+    	
+    });//document ready
+ </script>
+</head>
+<!-- getpost_test.html -->
+<body>
+  <h3>jQuery Ajax(get함수,post함수)</h3>
+  <hr>
+       이름: <input type="text" name="username"> <br>
+       나이: <input type="text" name="age"> <br>
+  <button id="bt1">get요청</button>
+  <button id="bt2">post요청</button>
+  <button id="bt3">ajax요청(제일많이사용)</button>
+  <div></div>
+</body>
+</html>
+
