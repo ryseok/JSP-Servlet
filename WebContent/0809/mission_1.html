@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>미션 01</title>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#bt_result").click(function() {
+			$.ajax({
+				url : "/struts/mission1.do",
+				data:{ username:$('[name=username]').val() },
+				success : function(result) {
+					//외부데이터를 사용해서 현재 문서 조작
+					$("div").html(result);
+					username:$('[name=username]').val("");
+				}
+			});//ajax
+
+		});
+	});//jQuery
+</script>
+</head>
+<!--mission_01.html-->
+<body>
+	<h1>미션1 결과</h1>
+	<hr>
+	<input type="text" name="username">
+	<button id="bt_result">결과</button>
+	<hr>
+	<div></div>
+</body>
+</html>

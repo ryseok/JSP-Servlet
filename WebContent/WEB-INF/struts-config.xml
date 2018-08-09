@@ -200,6 +200,20 @@
 			<forward name="list" path="/0802/reply_list.jsp"></forward>
 			<forward name="result" path="/0802/reply_result.jsp"></forward>
 	</action>
+	
+	<!--0809 미션-->
+	<action path="/mission1"
+			type="com.encore.s0809.actions.MissionAction">
+	</action>
+	
+	<action path="/mission2" type="com.encore.s0809.actions.MissionAction2">
+		<forward name="result" path="/0809/mission2.jsp"></forward>	
+	</action>
+
+	<action path="/mission3"
+		type="com.encore.s0809.actions.MissionAction3">
+		<forward name="result" path="/0809/mission3.jsp" />
+	</action>
     </action-mappings>
     
 	<controller processorClass="com.encore.control.MyRequestProcessor"></controller>

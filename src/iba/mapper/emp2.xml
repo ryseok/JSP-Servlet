@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<!-- emp2.xml -->
+<sqlMap namespace="emp2">
+	<select id="selectEmpInfo" resultClass="com.encore.s0809.vo.Emp"
+			parameterClass="java.util.Map">
+	<!--사원번호,사원명,급여,부서번호,입사일자-->
+		select empno,ename,sal,deptno,hiredate
+		from emp
+		<isNotNull property="ename">
+		where ename like #ename#
+		</isNotNull>
+		<isNotNull property="deptno">
+		where deptno = #deptno#
+		</isNotNull>
+	</select>
+</sqlMap>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>미션3</title>
+  <script type="text/javascript" src="/struts/js/jquery-3.3.1.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      $('button').click(function(){
+    	 $.ajax({ url:'/struts/mission3.do',
+    		      data:{
+    		    	 search:$('[name=emp]:checked').val(), //검색조건
+    		    	 keyword:$('input[name=keyword]').val()//검색키워드
+    		      },
+    		      success:function(result){
+    		    	 $('div').html(result);
+    		    	 $('input[name=keyword]').val('');
+    		      }
+    	 });//ajax요청
+      });//버튼클릭
+    });//document ready
+  </script>
+</head>
+<!-- mission3.html -->
+<body>
+  <h3>사원정보검색</h3>
+  <hr>
+  <input type="radio" name="emp" value="ename" checked>사원명
+  <input type="radio" name="emp" value="deptno">부서번호
+  <br>
+  <input type="text" name="keyword">
+  <button>검색</button>
+  <br><br>
+  <div></div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+<meta charset="UTF-8">
+<title>Ajax요청테스트</title>
+<!-- /struts/0809/jquery/request.html -->
+<script type="text/javascript" src="/struts/js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#bt1").click(function() {
+			$.ajax({
+				url : 'response7.jsp',
+				success : function(data) {//"SMITH,ALLEN,WARD,JONES"
+					var arr = data.split(',');//{"SMITH","ALLEN"}
+					var htmlTxt = '<font color=green><ul>';
+					$.each(arr, function(index, value) {
+						htmlTxt += '<li>' + value + '</li>';
+					});
+					htmlTxt += '</ul></font>';
+					$('#d1').html(htmlTxt);
+				}//success
+			});
+		});
+		$('#bt2').click(function() {
+			$.ajax({
+				url : 'response7_2.jsp',
+				success : function(data) {//"['SMITH','ALLEN','WARD']"
+					//console.log('사원수:' + data.length);
+					var htmlTxt = '<font color=blue><ul>';
+					$.each(data, function(index, item) {
+						htmlTxt += '<li>' + item + '</li>';
+					});
+					htmlTxt += '</ul></font>';
+					$('#d1').html(htmlTxt);
+				},//success
+				dataType : 'json',
+				error : function(xhr, status) {
+					console.log("에러발생>>>>" + status)
+				}
+			});
+		});
+		$('#bt3').click(function() {
+			$.ajax({
+				url : 'response7_3.jsp',
+				success : function(data) {
+					$('#d1').html(data);
+				}
+			});
+		});
+		$('#bt4').click(function() {
+			//'http://localhost/struts/0809/jquery/request.html'
+			//'http://localhost/struts/0727/response8.do?deptno=30'
+
+			//HTML로 부터 부서번호 얻어오기
+			var deptno = $('#deptno').val();
+
+			$.ajax({
+				url : '/struts/0727/response8.do',
+				data : {
+					deptno : deptno
+				},
+				success : function(data) {
+					$('#d1').html(data);
+				}
+			});
+		});
+	});
+</script>
+</head>
+<!-- request.html 
+     (요청페이지-서버에게 데이터를 URL로 요청, xhr객체를 이용해서 요청)
+-->
+<body>
+	이름:
+	<input type="text" name="username" id="username">
+	<br>
+	<button id="bt1">response7요청(사원정보-이름)</button>
+	<br>
+	<button id="bt2">response7_2요청(사원정보-이름)</button>
+	<br>
+	<button id="bt3">response7_3요청(사원정보-이름)</button>
+	<br> 부서번호:
+	<input type="text" id="deptno">
+	<br>
+	<button id="bt4">response8요청(사원정보-사번,이름,입사일)</button>
+	<br>
+	<h3>결과출력</h3>
+	<hr>
+	<div id="d1"></div>
+</html>
+
+

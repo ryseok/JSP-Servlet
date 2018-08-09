@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>미션2</title>
+<script type="text/javascript" src="/struts/js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(function(){
+      $('button').on('click',function(){
+    	 $.ajax({url:'/struts/mission2.do'
+    		     ,
+    		     data:{
+    		    	    su1:$('[name=su1]').val(),
+    		    	    su2:$('[name=su2]').val(),
+    		    	    oper:$('[name=oper]').val()
+    		     }
+    	         ,
+    	         success:function(result){
+    	        	$('div').html(result); 
+    	         }
+    	 }); //URL요청, 문서조작
+      });//버튼 클릭	
+    });//document ready
+  </script>
+</head>
+<!-- mission2.html -->
+<body>
+	<h1>jQuery계산기</h1>
+	<hr>
+	<input type="text" name="su1" size="4">
+	<select name="oper">
+		<option>+</option>
+		<option>-</option>
+		<option>*</option>
+		<option>/</option>
+	</select>
+	<input type="text" name="su2" size="4">
+	<button>계산</button>
+	<hr>
+	<div></div>
+</body>
+</html>
+
