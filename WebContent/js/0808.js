@@ -80,25 +80,25 @@ function load5(){
  }//load5
 //================================================================
 //제일 많이 사용한다 ~ 무한반복 각!!!
-function load6() {
-	sendRequest('response6.jsp', null, loaded6);
+function load6(){
+   	alert('안녕')
+   $.ajax({ url:'response6.jsp',
+	        success:function(result){//result: '[배열]'  ----> String
+	          console.log('책갯수:'+ result.length);	
+	          var arr = result; //String ----> Array
+	          //for(var i=0; i<arr.length; i++){ var json=arr[i]}
+	          var htmlTxt='<font color=red><ol>';
+	           //for(var j in arr){
+	           for(var i=0; i<arr.length; i++){
+	        	   htmlTxt+='<li>'+arr[i].title+'</li>'
+	           }
+	           htmlTxt +='</ol></font>';
+	           $('#d1').html(htmlTxt);
+	        },
+	        dataType:"json"
+   });//ajax
 }
 
-function loaded6() {
-	if (xhr.readyState == 4 && xhr.status == 200) {
-		var books = eval(xhr.responseText); //books 자료형은 Array
-		console.log('책 갯수: ' + books.length);
-
-		var htmlTxt = '<ol>';
-		for (var i = 0; i < books.length; i++) {
-			htmlTxt += "<li>" + books[i].title + "</li>"
-		}
-		htmlTxt += '</ol>';
-
-		var d1 = document.getElementById('d1');
-		d1.innerHTML = htmlTxt;
-	}
-}
 //================================================================
 function load7Ver1() { //스스로 해결함
 	sendRequest('response7_ver1.jsp', null, loaded7Ver1);

@@ -27,5 +27,6 @@ public class CalcAction extends Action {
 		request.setAttribute("result", result);
 
 		return mapping.findForward("form");
+		//return null;
 	}
 }//class End
