@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+ <script type="text/javascript">
+  $(function(){
+	  
+	  var v = document.getElementById('vdo');//v:Element
+	  
+	$('#play').click(function(){
+		//$('#vdo')[0].play();
+		v.play();
+	});  
+	$('#pause').click(function(){ v.pause(); });
+	$('#stop').click(function(){ v.pause();  v.currentTime=0; });
+	
+	$('#rate1').click(function(){ v.playbackRate=1; });
+	$('#rate2').click(function(){ v.playbackRate=2; });
+	
+	$('#normal').click(function(){ v.width=300; });
+	$('#large').click(function(){ v.width=500; });
+	$('#small').click(function(){ v.width=150; });
+	
+	$('#prev').click(function(){ v.currentTime -= 5; });
+	$('#next').click(function(){ v.currentTime += 5;});
+  });  
+ </script>
+</head>
+<!-- movie_test.html -->
+<body>
+  <h3>Movie테스트</h3>
+  <hr>
+  <video width="300px" id="vdo">
+     <source src="http://html5.firejune.com/demo/big_buck_bunny.ogv" type="video/ogg">
+     <source src="http://html5.firejune.com/demo/big_buck_bunny.mp4" type="video/mp4">
+     <source src="http://html5.firejune.com/demo/big_buck_bunny.webm" type="video/webm">
+  </video>
+  <br>
+  <button id="play">시작</button>
+  <button id="pause">일시정지</button>
+  <button id="stop">정지</button>
+  <button id="rate1">1배속</button>
+  <button id="rate2">2배속</button>
+  <br>
+  <button id="normal">일반화면</button>
+  <button id="large">2배화면</button>
+  <button id="small">1/2화면</button>
+  <br>
+  <button id="prev">&lt;&lt;</button>
+  <button id="next">>></button>
+</body>
+</html>
+
+
+
+
+
