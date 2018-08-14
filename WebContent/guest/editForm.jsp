@@ -12,16 +12,19 @@
      function passCheck(updel){
     	 choice = updel;
     	 
-       window.open('pass_check.jsp','confirm',
+       window.open('/struts/guest/passCheck.do','confirm',
     		   'width=280,height=100,top=100,left=200');	 
      }
      
      function execUpDel(){
        if(choice == 'up')	 
     	document.editForm.submit();
-       else //if(choice=='del')
-    	location.href='/TomTest/guest/control?action=delete&no=${guest.no}'; 
-     }
+       else { //if(choice=='del')
+    	   if(confirm('정말 삭제?')){
+    	     location.href='/struts/guest/delete.do?no=${guest.no}';
+    	   }
+       }
+     }//execUpDel
      
      function execDel(){
     	location.href='/struts/guest/delete.do?no=${guest.no}'; 
@@ -73,9 +76,9 @@
           <tr>
               <td colspan="2" align="center">
                 <!-- <input type="submit" value="수정"> -->
-                <input type="submit" value="수정">
+                <input type="button" value="수정" onclick="passCheck('up')">
                 <input type="reset" value="취소">
-                <input type="button" value="삭제" onclick="execDel()">
+                <input type="button" value="삭제" onclick="passCheck('del')">
               </td>
           </tr>
        </table>

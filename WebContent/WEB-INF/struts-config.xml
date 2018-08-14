@@ -214,7 +214,19 @@
 		type="com.encore.s0809.actions.MissionAction3">
 		<forward name="result" path="/0809/mission3.jsp" />
 	</action>
+
+	<action path="/mission4"
+		type="com.encore.s0809.actions.MissionAction4">
+		<forward name="result"
+			path="/0809/mission/ajaxResult/addrResult.jsp" />
+	</action>
+    <!--0809 미션 복습-->
+	<action path="/re_mission"
+			type="com.encore.review.Re_MissionAcrion">
+	</action>
     </action-mappings>
+    
+    
     
 	<controller processorClass="com.encore.control.MyRequestProcessor"></controller>
 	

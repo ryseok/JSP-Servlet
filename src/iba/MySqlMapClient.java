@@ -8,12 +8,6 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 public class MySqlMapClient {
-  /*
-    sqlMapConfig.xml������ ��üȭ �����ִ� Ŭ���� 
-      
-        ��SqlMapClientŬ���� : XML���� �ۼ��� sql���� ȣ��!!
-  */
-
    private static final SqlMapClient sqlMap;	
    
    static {

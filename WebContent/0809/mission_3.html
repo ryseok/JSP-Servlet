@@ -6,6 +6,13 @@
   <script type="text/javascript" src="/struts/js/jquery-3.3.1.js"></script>
   <script type="text/javascript">
     $(function(){
+      $('[name=charFilter]').keyup(function(){
+    	  var txt = $(this).val().toLowerCase();
+    	  $('#tbody tr').filter(function(){
+    	      $(this).toggle(  $(this).text().toLowerCase().indexOf(txt) > -1  ); 
+    	  });
+      });
+      
       $('button').click(function(){
     	 $.ajax({ url:'/struts/mission3.do',
     		      data:{
@@ -13,7 +20,10 @@
     		    	 keyword:$('input[name=keyword]').val()//검색키워드
     		      },
     		      success:function(result){
-    		    	 $('div').html(result);
+    		    	 $('div').html(result);//테이블출력  
+    		    	 
+    		    	 $('#tbody tr:even').css({'background-color':'orange'});
+    		    	 
     		    	 $('input[name=keyword]').val('');
     		      }
     	 });//ajax요청
@@ -31,6 +41,13 @@
   <input type="text" name="keyword">
   <button>검색</button>
   <br><br>
+    글자필터링: <input type="text" name="charFilter">
+  <br><br>
   <div></div>
 </body>
 </html>
+
+
+
+
+

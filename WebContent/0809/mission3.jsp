@@ -2,14 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%-- mission3.jsp(사원번호,사원명,급여,부서번호,입사일자) --%>
-  <table border="1" cellpadding="5">
-     <tr bgcolor="orange">
+  <table border="1" cellpadding="5" width="100%">
+    <thead>
+     <tr>
        <th>사원번호</th>
        <th>사원명</th>
        <th>급여</th>
        <th>부서번호</th>
        <th>입사일자</th>
      </tr>
+    </thead>
+    <tbody id="tbody"> 
      <c:forEach items="${list }" var="emp">
      <tr>
        <td>${emp.empno }</td>
@@ -19,4 +22,5 @@
        <td>${emp.hiredate }</td>
      </tr>
      </c:forEach>
+    </tbody>
   </table>

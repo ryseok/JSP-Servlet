@@ -7,7 +7,7 @@
 <title>비밀번호확인</title>
   <script type="text/javascript">
     function checkpass(){
-       var pass = document.passForm.pass.value; //'1111';
+       var pass = document.passForm .pass.value; //'1111';
        var dpass = opener.document.editForm.dpass.value;//'1234';
        
        if(pass === dpass){
