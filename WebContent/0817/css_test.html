@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS테스트</title>
+ <style type="text/css">
+   a:link{color:olive;}
+   a:hover {color:orange;}
+   a:active {color:yellow;}
+   a:visited {color: skyblue;}
+   
+   a{
+      text-decoration: none;
+   }
+   
+   body{
+        /* font-family: "궁서a","맑은 고딕","돋움"; 
+         font-variant: small-caps; 
+      background-image: url("../image/bgdesert.jpg")*/   
+      background-image: url("../image/img_tree.png");
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-attachment: fixed;
+   }
+   h1{
+      font-size: 20px;
+   }
+   .p1{
+      font-size: 14px;
+   }
+   .p2{
+      font-weight: 900;
+   }
+   .p3{
+      font-weight: 100;
+   }
+   .left{text-align:left; }
+   .right{text-align:right; }
+   .center{text-align:center; }
+   .justify{text-align:justify; }
+   
+   .shadow{
+      font-size: 2em;
+      text-shadow: 0px -4px 6px yellow, 0px -5px 6px red, 0px 1px 0px white;
+      font-weight: 900;
+      background-color: black; 
+   }
+   .under{ text-decoration: underline;}
+   .over{ text-decoration: overline;}
+   .thro{ text-decoration: line-through;}
+   
+   .trans{ text-transform: capitalize;}
+   .trans{ text-transform: lowercase;
+           letter-spacing: 10px;
+           word-spacing: 20px;}
+   .line{ line-height: 200%;}  
+   .ws{
+        white-space:pre;
+        white-space:pre-line;
+        white-space:pre-wrap; 
+        white-space:nowrap; 
+   }         
+   ul>li{
+     list-style-type: disc;
+     list-style-type: circle;
+     list-style-type: square;
+     list-style-type: none;/*앞의 블릿 감추기*/
+     list-style-type: decimal;
+     list-style-type: decimal-leading-zero;/*10이하 앞에 0붙이기 */
+     list-style-type: lower-roman;
+     list-style-type: upper-roman;
+     list-style-type: lower-greek;
+     list-style-type: lower-alpha;
+   }
+ </style>
+</head>
+<!-- css_test.html -->
+<body>
+   <h3>CSS테스트</h3>
+   <a href="https://www.naver.com">네이버로 이동</a><br>
+   동해물과 백두산이<br>
+   마르고 닳도록
+  <h1>나헤딩1태그</h1>
+  <p class="p1">나는문단태그</p>
+  <p style="font-size: 2em">나도문단태그</p>
+  <p>JavaScript</p>
+  <p class="p2">폰트가중치 굵기테스트ABC-굵게</p>
+  <p class="p3">폰트가중치 굵기테스트ABC-얇게</p>
+  <p class="left" style="text-indent: 10px">왼쪽정렬안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕</p>
+  <p class="right">오른쪽정렬</p>
+  <p class="center">중앙정렬</p>
+  <p class="justify">justify정렬안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕안녕</p>
+
+  <p class="shadow">HTML5와 CSS3</p>
+  <p class="under">밑줄쫘~악</p>
+  <p class="over">윗줄쫘~악</p>
+  <p class="thro">가로질~러</p>
+  <p class="trans">Html JavaScript jquery cSS</p>
+  <p class="line">
+     남산위의 저 소나무<br>
+     철갑을 두른 듯
+  </p>
+  <p class="ws">가을하늘 공활한데     
+  
+   
+  높고          구름없이</p>
+  <ul>
+  <li>초복</li>
+  <li>중복</li>
+  <li>말복</li>
+  <li>말복</li>
+  <li>말복</li>
+  <li>말복</li>
+  <li>말복</li>
+  <li>말복</li>
+  <li>말복</li>
+  <li>말복</li>
+  <li>말복</li>
+  <li>말복</li>
+  </ul>
+  <p style="background-color: rgba(255,0,0,.5); width:200px; height:200px; " ></p>
+  
+  <p style="background-color: hsl(240,50%,50%) ; width:200px; height:200px; " ></p>
+  
+  <p style="width: 400px; height: 300px; background: linear-gradient(45deg, blue, white)"></p>
+  <p style="width: 400px; height: 300px; background: linear-gradient(to bottom, red, white)"></p>
+  <p style="width: 400px; height: 300px; background: linear-gradient(to bottom, green, white 30%, green)"></p>
+  <p style="width: 600px; height: 400px; background: radial-gradient(circle, green, yellow)"></p>
+  <p style="width: 600px; height: 400px; background: radial-gradient(ellipse, yellow, green)"></p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

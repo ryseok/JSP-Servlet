@@ -162,6 +162,7 @@
 		<forward name="list" path="/guest.do?action=list"
 			redirect="true" />
 	</action>
+	
 	<!-- 방명록 관련 뷰 (pass_check.jsp) -->
 	<action path="/guest/passCheck" forward="/guest/pass_check.jsp" />
 		
