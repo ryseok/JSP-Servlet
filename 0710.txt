@@ -1,0 +1,2 @@
+java.lang.NullPointerException 예외발생
+메모리 주소가 없음

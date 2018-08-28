@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="review">
+	<insert id="insert" parameterClass="Review_vo_0719">
+		insert into review (no,writer,email,tel,pass,contents,wdate)
+		values (review_req.nextval,#writer#,#email#,#tel#,#pass#,#contents#,sysdate)
+	</insert>
+
+
+	<select id="selectAll" resultClass="Review_vo_0719">
+		select no,writer,tel,contents,wdate
+		from review
+		order by no desc
+	</select>
+
+
+	<update id="update" parameterClass="Review_vo_0719">
+		update review set
+		writer=#writer#,email=#email#,tel=#tel#,pass=#pass#,contents=#contents#
+		where no=#no#
+	</update>
+
+
+	<delete id="delete" parameterClass="int">
+		delete
+		from review
+		where no=#delno#
+	</delete>
+
+</sqlMap>
+
+
+
